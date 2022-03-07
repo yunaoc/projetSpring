@@ -1,18 +1,29 @@
 package com.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import java.util.List;
+
+import javax.persistence.*;
+
+import lombok.Data;
 
 @Entity
+@Data
 public class Filiere {
-    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idFiliere;
+    private String codeFiliere;
+    private String nomFiliere;
+    @ManyToMany
+    private List<Cours> lesCours;
+    @ManyToOne
+    private Composante saComposante;
 
-    public void setId(Long id) {
-        this.id = id;
+    public void addCours(Cours cours) {
+        this.lesCours.add(cours);
     }
 
-    @Id
-    public Long getId() {
-        return id;
+    public void removeFiliere(Cours cours) {
+        this.lesCours.remove(cours);
     }
 }
