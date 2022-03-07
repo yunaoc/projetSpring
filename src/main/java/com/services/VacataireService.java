@@ -16,7 +16,7 @@ public interface VacataireService {
     VacataireDto getVacataireById(Long vacataireId);
 
     /**
-     * Modifie un vacataire
+     * Modifier un vacataire
      */
     VacataireDto updateVacataireById(Long vacataireId, VacataireDto vacataireDto);
 

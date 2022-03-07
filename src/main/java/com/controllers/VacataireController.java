@@ -44,16 +44,16 @@ public class VacataireController {
     /**
      * Method to update the vacataire based on the ID
      */
-    @PostMapping("/update/{id}")
-    public VacataireDto updateVacataireById(@PathVariable Long id, final @RequestBody VacataireDto vacataireDto){
+    @PostMapping("/update/")
+    public VacataireDto updateVacataireById(@RequestParam Long id, final @RequestBody VacataireDto vacataireDto){
         return vacataireService.updateVacataireById(id, vacataireDto);
     }
 
     /**
      * Delete a vacataire by it's id
      */
-    @DeleteMapping("/{id}")
-    public Boolean deleteVacataire(@PathVariable Long id){
+    @DeleteMapping("/")
+    public Boolean deleteVacataire(@RequestParam Long id){
         return vacataireService.deleteVacataire(id);
     }
 }

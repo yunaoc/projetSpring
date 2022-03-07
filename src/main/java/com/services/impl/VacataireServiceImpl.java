@@ -1,7 +1,6 @@
 package com.services.impl;
 
 import com.dtos.VacataireDto;
-import com.entities.Cours;
 import com.entities.Vacataire;
 import com.repositories.VacataireRepository;
 import com.services.VacataireService;
