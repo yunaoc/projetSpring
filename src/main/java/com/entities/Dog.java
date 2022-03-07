@@ -13,10 +13,10 @@ import lombok.Data;
 @Data
 public class Dog {
 
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long Id;
-	private String name;
-	private String race;
-	private LocalDate birthDate;	
-	
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long Id;
+    private String name;
+    private String race;
+    private LocalDate birthDate;
+
 }
