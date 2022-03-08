@@ -44,7 +44,7 @@ public class FiliereController {
     /**
      * Method to update the filiere based on the ID
      */
-    @PostMapping("/update/")
+    @PutMapping("/update/")
     public FiliereDto updateFiliereById(@RequestParam Long idFiliere, final @RequestBody FiliereDto filiereDto){
         return filiereService.updateFiliereById(idFiliere, filiereDto);
     }
