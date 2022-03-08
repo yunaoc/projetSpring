@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/filiere")
+@RequestMapping("/badgeuse/filiere")
 public class FiliereController {
 
     private final FiliereServiceImpl filiereService;

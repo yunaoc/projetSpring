@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/gestionnaire")
+@RequestMapping("/badgeuse/gestionnaire")
 public class GestionnaireController {
 
     private final GestionnaireServiceImpl gestionnaireService;
