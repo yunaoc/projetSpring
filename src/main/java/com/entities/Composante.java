@@ -10,7 +10,7 @@ import lombok.Data;
 @Data
 public class Composante {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idComposante;
     private String nomComposante;
     @OneToMany
