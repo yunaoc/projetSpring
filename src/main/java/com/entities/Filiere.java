@@ -16,8 +16,6 @@ public class Filiere {
     private String nomFiliere;
     @ManyToMany
     private List<Cours> lesCours;
-    @ManyToOne
-    private Composante saComposante;
 
     public void addCours(Cours cours) {
         this.lesCours.add(cours);

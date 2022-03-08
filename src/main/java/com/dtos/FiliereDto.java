@@ -12,5 +12,4 @@ public class FiliereDto {
     private String codeFiliere;
     private String nomFiliere;
     private List<Cours> lesCours;
-    private Composante saComposante;
 }

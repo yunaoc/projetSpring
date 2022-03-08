@@ -43,8 +43,6 @@ public class FiliereServiceImpl implements FiliereService {
             filiere.setCodeFiliere(filiereDto.getCodeFiliere());
         if(filiereDto.getNomFiliere() != null)
             filiere.setNomFiliere(filiereDto.getNomFiliere());
-        if(filiereDto.getSaComposante() != null)
-            filiere.setSaComposante(filiereDto.getSaComposante());
         filiere = filiereRepository.save(filiere);
         return filiereEntityToDto(filiere);
     }
@@ -93,7 +91,6 @@ public class FiliereServiceImpl implements FiliereService {
         filiereDto.setNomFiliere(filiere.getNomFiliere());
         filiereDto.setCodeFiliere(filiere.getCodeFiliere());
         filiereDto.setLesCours(filiere.getLesCours());
-        filiereDto.setSaComposante(filiere.getSaComposante());
         return filiereDto;
     }
 
@@ -106,7 +103,6 @@ public class FiliereServiceImpl implements FiliereService {
         filiere.setNomFiliere(filiereDto.getNomFiliere());
         filiere.setCodeFiliere(filiereDto.getCodeFiliere());
         filiere.setLesCours(filiereDto.getLesCours());
-        filiere.setSaComposante(filiereDto.getSaComposante());
         return filiere;
     }
 }
