@@ -33,7 +33,7 @@ public class GestionnaireController {
      * Create a new Gestionnaire in the system with idComposante
      */
     @PostMapping("/{id}")
-    public GestionnaireDto createGestionnaire(final @RequestBody GestionnaireDto gestionnaireDto, @PathVariable Long id){
+    public GestionnaireDto createGestionnaire(final @RequestBody GestionnaireDto gestionnaireDto, @RequestParam Long id){
         return gestionnaireService.createGestionnaire(gestionnaireDto, id);
     }
 
