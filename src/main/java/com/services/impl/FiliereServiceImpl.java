@@ -16,11 +16,9 @@ import java.util.List;
 @Service("filiereService")
 public class FiliereServiceImpl implements FiliereService {
     private final FiliereRepository filiereRepository;
-    private final CoursRepository coursRepository;
 
-    public FiliereServiceImpl(FiliereRepository filiereRepository, CoursRepository coursRepository){
+    public FiliereServiceImpl(FiliereRepository filiereRepository){
         this.filiereRepository = filiereRepository;
-        this.coursRepository = coursRepository;
     }
 
     @Override
@@ -47,26 +45,6 @@ public class FiliereServiceImpl implements FiliereService {
         return filiereEntityToDto(filiere);
     }
 
-
-    //A tester
-    @Override
-    public FiliereDto addCoursFiliereById(Long filiereId, Long coursId) {
-        Cours cours = coursRepository.findById(coursId).orElseThrow(() -> new EntityNotFoundException("Cours not found"));
-        Filiere filiere = filiereRepository.findById(filiereId).orElseThrow(() -> new EntityNotFoundException("Filiere not found"));
-        filiere.addCours(cours);
-        filiere = filiereRepository.save(filiere);
-        return filiereEntityToDto(filiere);
-    }
-
-    // A tester
-    @Override
-    public FiliereDto removeCoursFiliereById(Long filiereId, Long coursId) {
-        Cours cours = coursRepository.findById(coursId).orElseThrow(() -> new EntityNotFoundException("Cours not found"));
-        Filiere filiere = filiereRepository.findById(filiereId).orElseThrow(() -> new EntityNotFoundException("Filiere not found"));
-        filiere.removeFiliere(cours);
-        return filiereEntityToDto(filiere);
-    }
-
     @Override
     public boolean deleteFiliere(Long filiereId) {
         filiereRepository.deleteById(filiereId);
@@ -90,7 +68,6 @@ public class FiliereServiceImpl implements FiliereService {
         filiereDto.setIdFiliere(filiere.getIdFiliere());
         filiereDto.setNomFiliere(filiere.getNomFiliere());
         filiereDto.setCodeFiliere(filiere.getCodeFiliere());
-        filiereDto.setLesCours(filiere.getLesCours());
         return filiereDto;
     }
 
@@ -102,7 +79,6 @@ public class FiliereServiceImpl implements FiliereService {
         filiere.setIdFiliere(filiereDto.getIdFiliere());
         filiere.setNomFiliere(filiereDto.getNomFiliere());
         filiere.setCodeFiliere(filiereDto.getCodeFiliere());
-        filiere.setLesCours(filiereDto.getLesCours());
         return filiere;
     }
 }

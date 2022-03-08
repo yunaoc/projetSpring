@@ -49,23 +49,6 @@ public class FiliereController {
         return filiereService.updateFiliereById(idFiliere, filiereDto);
     }
 
-
-    /**
-     * Methode pour ajouter un cours à une filiere grace à leur id
-     */
-    @PostMapping("/addCoursb/")
-    public FiliereDto addCoursFiliereById(@RequestParam Long idCours, @RequestParam Long idFiliere){
-        return filiereService.addCoursFiliereById(idFiliere, idCours);
-    }
-
-    /**
-     * Methode pour supprimer un cours d'une filiere grace à leur id
-     */
-    @DeleteMapping("/removeCours/")
-    public FiliereDto removeCoursFiliereById(@RequestParam Long idCours, @RequestParam Long idFiliere){
-        return filiereService.removeCoursFiliereById(idFiliere, idCours);
-    }
-
     /**
      * Delete a filiere by its id
      */

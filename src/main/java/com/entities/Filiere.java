@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.*;
 
 import lombok.Data;
+import org.springframework.lang.NonNullFields;
 
 @Entity
 @Data
@@ -14,14 +15,4 @@ public class Filiere {
     private Long idFiliere;
     private String codeFiliere;
     private String nomFiliere;
-    @ManyToMany
-    private List<Cours> lesCours;
-
-    public void addCours(Cours cours) {
-        this.lesCours.add(cours);
-    }
-
-    public void removeFiliere(Cours cours) {
-        this.lesCours.remove(cours);
-    }
 }

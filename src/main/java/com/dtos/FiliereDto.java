@@ -11,5 +11,4 @@ public class FiliereDto {
     private Long idFiliere;
     private String codeFiliere;
     private String nomFiliere;
-    private List<Cours> lesCours;
 }

@@ -23,16 +23,6 @@ public interface FiliereService {
     FiliereDto updateFiliereById(Long filiereId, FiliereDto filiereDto);
 
     /**
-     * Ajoute un cours à une filiere
-     */
-    FiliereDto addCoursFiliereById(Long filiereId, Long coursId);
-
-    /**
-     * Supprime un cours d'une filiere
-     */
-    FiliereDto removeCoursFiliereById(Long filiereId, Long coursId);
-
-    /**
      * Supprimer un filiere
      */
     boolean deleteFiliere(Long filiereId);
