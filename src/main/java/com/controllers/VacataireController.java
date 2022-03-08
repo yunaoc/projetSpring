@@ -44,7 +44,7 @@ public class VacataireController {
     /**
      * Method to update the vacataire based on the ID
      */
-    @PostMapping("/update/")
+    @PutMapping("/update/")
     public VacataireDto updateVacataireById(@RequestParam Long id, final @RequestBody VacataireDto vacataireDto){
         return vacataireService.updateVacataireById(id, vacataireDto);
     }

@@ -44,7 +44,7 @@ public class CoursController {
     /**
      * Method to update the cours based on the ID
      */
-    @PostMapping("/update/")
+    @PutMapping("/update/")
     public CoursDto updateCoursById(@RequestParam Long idCours, final @RequestBody CoursDto coursDto){
         return coursService.updateCoursById(idCours, coursDto);
     }
@@ -52,7 +52,7 @@ public class CoursController {
     /**
      * Methode pour ajouter un vacataire à un cours grace à leur id
      */
-    @PostMapping("/addVacataire/")
+    @PutMapping("/addVacataire/")
     public CoursDto addVacataireCoursById(@RequestParam Long idCours, @RequestParam Long idVacataire){
         return coursService.addVacataireCoursById(idCours, idVacataire);
     }
@@ -60,7 +60,7 @@ public class CoursController {
     /**
      * Methode pour supprimer un vacataire d'un cours grace à leur id
      */
-    @PostMapping("/removeVacataire/")
+    @PutMapping("/removeVacataire/")
     public CoursDto removeVacataireCoursById(@RequestParam Long idCours, @RequestParam Long idVacataire){
         return coursService.removeVacataireCoursById(idCours, idVacataire);
     }
@@ -68,7 +68,7 @@ public class CoursController {
     /**
      * Methode pour ajouter un vacataire à un cours grace à leur id
      */
-    @PostMapping("/addFiliere/")
+    @PutMapping("/addFiliere/")
     public CoursDto addFiliereCoursById(@RequestParam Long idCours, @RequestParam Long idFiliere){
         return coursService.addFiliereCoursById(idCours, idFiliere);
     }
@@ -76,7 +76,7 @@ public class CoursController {
     /**
      * Methode pour supprimer un vacataire d'un cours grace à leur id
      */
-    @PostMapping("/removeFiliere/")
+    @PutMapping("/removeFiliere/")
     public CoursDto removeFiliereCoursById(@RequestParam Long idCours, @RequestParam Long idFiliere){
         return coursService.removeFiliereCoursById(idCours, idFiliere);
     }
