@@ -41,6 +41,8 @@ public class FiliereServiceImpl implements FiliereService {
             filiere.setCodeFiliere(filiereDto.getCodeFiliere());
         if(filiereDto.getNomFiliere() != null)
             filiere.setNomFiliere(filiereDto.getNomFiliere());
+        if(filiereDto.getMaComposante() != null)
+            filiere.setMaComposante(filiereDto.getMaComposante());
         filiere = filiereRepository.save(filiere);
         return filiereEntityToDto(filiere);
     }
