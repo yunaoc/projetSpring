@@ -41,7 +41,7 @@ public class GestionnaireController {
      * Update a Gestionnaire in the system
      */
     @PutMapping("/{id}")
-    public GestionnaireDto updateGestionnaire(final @RequestBody GestionnaireDto gestionnaireDto, @PathVariable Long id){
+    public GestionnaireDto updateGestionnaire(final @RequestBody GestionnaireDto gestionnaireDto, @RequestParam Long id){
         return gestionnaireService.updateGestionnaire(gestionnaireDto,id);
     }
 
@@ -49,7 +49,7 @@ public class GestionnaireController {
      * Delete a gestionnaire by its id
      */
     @DeleteMapping("/{id}")
-    public Boolean deleteGestionnaire(@PathVariable Long id){
+    public Boolean deleteGestionnaire(@RequestParam Long id){
         return gestionnaireService.deleteGestionnaire(id);
     }
 
