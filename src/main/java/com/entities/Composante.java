@@ -15,6 +15,7 @@ public class Composante {
     @OneToMany
     private List<Filiere> lesFilieres;
     @OneToMany(mappedBy = "maComposante")
+    @JsonManagedReference
     private List<Gestionnaire> lesGestionnaires;
 
     public void addGestionnaire(Gestionnaire gestionnaire) {
