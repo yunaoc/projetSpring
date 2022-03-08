@@ -14,7 +14,7 @@ public class Composante {
     private String nomComposante;
     @OneToMany
     private List<Filiere> lesFilieres;
-    @OneToMany(mappedBy = "saComposante")
+    @OneToMany(mappedBy = "maComposante")
     private List<Gestionnaire> lesGestionnaires;
 
     public void addGestionnaire(Gestionnaire gestionnaire) {
