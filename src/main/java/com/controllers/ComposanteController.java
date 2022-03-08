@@ -44,7 +44,7 @@ public class ComposanteController {
     /**
      * Method to update the composante based on the ID
      */
-    @PostMapping("/update/")
+    @PutMapping("/update/")
     public ComposanteDto updateComposanteById(@RequestParam Long idComposante, final @RequestBody ComposanteDto composanteDto){
         return composanteService.updateComposanteById(idComposante, composanteDto);
     }
@@ -52,7 +52,7 @@ public class ComposanteController {
     /**
      * Methode pour ajouter un gestionnaire à une composante grace à leur id
      */
-    @PostMapping("/addGestionnaire/")
+    @PutMapping("/addGestionnaire/")
     public ComposanteDto addGestionnaireComposanteById(@RequestParam Long idComposante, @RequestParam Long idGestionnaire){
         return composanteService.addGestionnaireComposanteById(idComposante, idGestionnaire);
     }
@@ -68,7 +68,7 @@ public class ComposanteController {
     /**
      * Methode pour ajouter un gestionnaire à une composante grace à leur id
      */
-    @PostMapping("/addFiliere/")
+    @PutMapping("/addFiliere/")
     public ComposanteDto addFiliereComposanteById(@RequestParam Long idComposante, @RequestParam Long idFiliere){
         return composanteService.addFiliereComposanteById(idComposante, idFiliere);
     }
@@ -76,7 +76,7 @@ public class ComposanteController {
     /**
      * Methode pour supprimer un gestionnaire d'une composante grace à leur id
      */
-    @PostMapping("/removeFiliere/")
+    @DeleteMapping("/removeFiliere/")
     public ComposanteDto removeFiliereComposanteById(@RequestParam Long idComposante, @RequestParam Long idFiliere){
         return composanteService.removeFiliereComposanteById(idComposante, idFiliere);
     }
