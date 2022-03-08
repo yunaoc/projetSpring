@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
+import { Navbar, NavbarBrand, NavbarToggler } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 export default class Menu extends Component {
@@ -19,6 +19,7 @@ export default class Menu extends Component {
         return <Navbar color="dark" dark expand="md">
             <NavbarBrand tag={Link} to="/">Home</NavbarBrand>
             <NavbarBrand tag={Link} to="/vacataireListe">Liste</NavbarBrand>
+            <NavbarBrand tag={Link} to="/vacataireCreer">Creer</NavbarBrand>
             <NavbarToggler onClick={this.toggle}/>
         </Navbar>;
     }
