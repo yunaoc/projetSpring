@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/utilisateur")
+@RequestMapping("/vacataire")
 public class VacataireController {
     
     private final VacataireServiceImpl vacataireService;
