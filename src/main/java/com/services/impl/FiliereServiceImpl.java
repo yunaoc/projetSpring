@@ -1,10 +1,9 @@
 package com.services.impl;
 
-import com.dtos.CoursDto;
 import com.dtos.FiliereDto;
-import com.entities.Cours;
+import com.entities.Composante;
 import com.entities.Filiere;
-import com.repositories.CoursRepository;
+import com.repositories.ComposanteRepository;
 import com.repositories.FiliereRepository;
 import com.services.FiliereService;
 import org.springframework.stereotype.Service;
@@ -16,13 +15,16 @@ import java.util.List;
 @Service("filiereService")
 public class FiliereServiceImpl implements FiliereService {
     private final FiliereRepository filiereRepository;
+    private final ComposanteRepository composanteRepository;
 
-    public FiliereServiceImpl(FiliereRepository filiereRepository){
+    public FiliereServiceImpl(FiliereRepository filiereRepository, ComposanteRepository composanteRepository){
         this.filiereRepository = filiereRepository;
+        this.composanteRepository = composanteRepository;
     }
 
     @Override
-    public FiliereDto createFiliere(FiliereDto filiereDto) {
+    public FiliereDto createFiliere(FiliereDto filiereDto, Long idComposante) {
+        Composante composante = composanteRepository.findById(idComposante).orElseThrow(() -> new EntityNotFoundException("Composante not found"));
         Filiere filiere = filiereDtoToEntity(filiereDto);
         filiere = filiereRepository.save(filiere);
         return filiereEntityToDto(filiere);

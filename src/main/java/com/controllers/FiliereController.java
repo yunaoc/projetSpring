@@ -37,8 +37,8 @@ public class FiliereController {
      * Create a new Filiere in the system
      */
     @PostMapping
-    public FiliereDto createFiliere(final @RequestBody FiliereDto filiereDto){
-        return filiereService.createFiliere(filiereDto);
+    public FiliereDto createFiliere(final @RequestBody FiliereDto filiereDto, @RequestParam Long idComposante){
+        return filiereService.createFiliere(filiereDto, idComposante);
     }
 
     /**

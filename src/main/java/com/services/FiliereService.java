@@ -10,7 +10,7 @@ public interface FiliereService {
     /**
      * Créer une filiere
      */
-    FiliereDto createFiliere(FiliereDto filiereDto);
+    FiliereDto createFiliere(FiliereDto filiereDto, Long idComposante);
 
     /**
      * Retourner un filiere
