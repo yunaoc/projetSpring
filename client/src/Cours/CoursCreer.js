@@ -31,14 +31,7 @@ class CoursCreer extends Component {
 
     async handleSubmit(event) {
         event.preventDefault();
-        let errors = {};
-        if (!this.state.item["intitule"]) {
-            errors["intitule"] = "Saisir un intitulé";
-            this.setState({
-                errors: errors
-            });
-        }
-        else {
+        if(this.validate()) {
             console.log(this.state);
             const {item} = this.state;
             await fetch('/badgeuse/cours', {
@@ -51,6 +44,20 @@ class CoursCreer extends Component {
             });
             this.props.history.push('/coursListe');
         }
+    }
+
+    validate(){
+        let errors = {};
+        let isValid = true;
+
+        if (!this.state.item["intitule"]) {
+            isValid = false;
+            errors["intitule"] = "Saisir un intitulé";
+        }
+        this.setState({
+            errors: errors
+        });
+        return isValid;
     }
 
     render() {
