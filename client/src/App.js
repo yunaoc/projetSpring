@@ -4,7 +4,7 @@ import Home from './Accueil';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import GestionnairesList from './Gestionnaire/GestionnaireListe';
 import GestionnaireModifier from './Gestionnaire/GestionnaireModifier';
-import GestionnaireAjouter from './Gestionnaire/GestionnaireAjouter';
+import GestionnaireAjouter from './Gestionnaire/GestionnaireCreer';
 
 class App extends Component {
   render() {
@@ -14,7 +14,7 @@ class App extends Component {
             <Route path='/' exact={true} component={Home}/>
             <Route path='/gestionnaire' exact={true} component={GestionnairesList}/>
             <Route path='/gestionnaire/modifier/:id' component={GestionnaireModifier}/>
-            <Route path='/gestionnaire/nouveau' exact={true} component={GestionnaireAjouter}/>
+            <Route path='/gestionnaire/creer' exact={true} component={GestionnaireAjouter}/>
           </Switch>
         </Router>
     )

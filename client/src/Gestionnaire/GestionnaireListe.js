@@ -58,10 +58,10 @@ class GestionnaireList extends Component {
         return (
             <div>
                 <Menu/>
-                <p></p>
+                <p/>
                 <Container fluid>
                     <div className="float-right">
-                        <Button color="success" tag={Link} to="/gestionnaire/nouveau">Ajouter Gestionnaire</Button>
+                        <Button color="success" tag={Link} to="/gestionnaire/creer">Ajouter Gestionnaire</Button>
                     </div>
                     <h3>Les gestionnaires :</h3>
                     <Table className="mt-4">
