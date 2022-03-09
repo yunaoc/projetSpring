@@ -99,7 +99,7 @@ class VacataireCreer extends Component {
             errors["motDePasse2"] = "Confirmer le mot de passe";
         }
 
-        if (input["motDePasse"] != input["motDePasse2"]) {
+        if (input["motDePasse"] !== input["motDePasse2"]) {
             isValid = false;
             errors["motDePasse"] = "Les mots de passe sont différents";
         }
