@@ -56,7 +56,7 @@ class ComposanteCreer extends Component {
 
         if (!input["nomComposante"]) {
             isValid = false;
-            errors["nomComposante"] = "Saisir un nom";
+            errors["nomComposante"] = "Veuillez saisir un nom";
         }
 
         this.setState({
@@ -76,7 +76,7 @@ class ComposanteCreer extends Component {
                     <div className="row">
                         <FormGroup className="col-md-5 mb-3">
                             <Label for="nomComposante">Nom</Label><br/>
-                            <span >{err.nomComposante}</span>
+                            <span ><i>{err.nomComposante}</i></span>
                             <Input type="text" name="nomComposante" id="nomComposante" onChange={this.handleChange}/>
                         </FormGroup>
                     </div>
