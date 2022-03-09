@@ -18,8 +18,7 @@ export default class Menu extends Component {
     render() {
         return <Navbar color="dark" dark expand="md">
             <NavbarBrand tag={Link} to="/">Accueil</NavbarBrand>
-            <NavbarBrand tag={Link} to="/vacataireListe">Liste</NavbarBrand>
-            <NavbarBrand tag={Link} to="/vacataireCreer">Creer</NavbarBrand>
+            <NavbarBrand tag={Link} to="/vacataireListe">Vacataires</NavbarBrand>
             <NavbarToggler onClick={this.toggle}/>
         </Navbar>;
     }
