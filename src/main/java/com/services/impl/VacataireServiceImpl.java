@@ -45,6 +45,8 @@ public class VacataireServiceImpl implements VacataireService {
 
         if(vacataireDto.getMail() != null)
             vacataire.setMail(vacataireDto.getMail());
+        if(vacataireDto.getMotDePasse() != null)
+            vacataire.setMotDePasse(vacataireDto.getMotDePasse());
 
         vacataire = vacataireRepository.save(vacataire);
         return vacataireEntityToDto(vacataire);
