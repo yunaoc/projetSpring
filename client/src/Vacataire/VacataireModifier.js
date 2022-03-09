@@ -43,8 +43,8 @@ class VacataireModifier extends Component {
         event.preventDefault();
 
         if(this.validate()) {
+            this.state.item["motDePasse"] = bcrypt.hashSync(this.state.item["motDePasse"], '$2a$10$81C0NmOGFacMZsWp20poXO');
             const {item} = this.state;
-
             await fetch('/badgeuse/vacataire/update/?id=' + item.id, {
                 method: 'PUT',
                 headers: {
@@ -86,8 +86,7 @@ class VacataireModifier extends Component {
             if (input["motDePasse"] !== input["motDePasse2"]) {
                 isValid = false;
                 errors["motDePasse"] = "Les mots de passe sont différents";
-            } else
-                this.state.item["motDePasse"] = bcrypt.hashSync(input["motDePasse"], '$2a$10$81C0NmOGFacMZsWp20poXO');
+            }
         }
 
 
