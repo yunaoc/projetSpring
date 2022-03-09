@@ -19,6 +19,7 @@ export default class Menu extends Component {
         return <Navbar color="dark" dark expand="md">
             <NavbarBrand tag={Link} to="/">Accueil</NavbarBrand>
             <NavbarBrand tag={Link} to="/vacataireListe">Vacataires</NavbarBrand>
+            <NavbarBrand tag={Link} to="/coursListe">Cours</NavbarBrand>
             <NavbarToggler onClick={this.toggle}/>
         </Navbar>;
     }
