@@ -17,13 +17,9 @@ import java.util.List;
 @Service("composanteService")
 public class ComposanteServiceImpl implements ComposanteService {
     private final ComposanteRepository composanteRepository;
-    private final GestionnaireRepository gestionnaireRepository;
-    private final FiliereRepository filiereRepository;
 
     public ComposanteServiceImpl(ComposanteRepository composanteRepository, GestionnaireRepository gestionnaireRepository, FiliereRepository filiereRepository){
         this.composanteRepository = composanteRepository;
-        this.gestionnaireRepository = gestionnaireRepository;
-        this.filiereRepository = filiereRepository;
     }
 
     @Override
@@ -44,44 +40,6 @@ public class ComposanteServiceImpl implements ComposanteService {
         Composante composante = composanteRepository.findById(composanteId).orElseThrow(() -> new EntityNotFoundException("Composante not found"));
         if(composanteDto.getNomComposante() != null)
             composante.setNomComposante(composanteDto.getNomComposante());
-        composante = composanteRepository.save(composante);
-        return composanteEntityToDto(composante);
-    }
-
-    //A tester
-    @Override
-    public ComposanteDto addGestionnaireComposanteById(Long composanteId, Long gestionnaireId) {
-        Composante composante = composanteRepository.findById(composanteId).orElseThrow(() -> new EntityNotFoundException("Composante not found"));
-        Gestionnaire gestionnaire = gestionnaireRepository.findById(gestionnaireId).orElseThrow(() -> new EntityNotFoundException("Gestionnaire not found"));
-        composante.addGestionnaire(gestionnaire);
-        composante = composanteRepository.save(composante);
-        return composanteEntityToDto(composante);
-    }
-
-    //A tester
-    @Override
-    public ComposanteDto removeGestionnaireComposanteById(Long composanteId, Long gestionnaireId) {
-        Composante composante = composanteRepository.findById(composanteId).orElseThrow(() -> new EntityNotFoundException("Composante not found"));
-        Gestionnaire gestionnaire = gestionnaireRepository.findById(gestionnaireId).orElseThrow(() -> new EntityNotFoundException("Gestionnaire not found"));
-        composante.removeGestionnaire(gestionnaire);
-        composante = composanteRepository.save(composante);
-        return composanteEntityToDto(composante);
-    }
-
-    @Override
-    public ComposanteDto addFiliereComposanteById(Long composanteId, Long filiereId) {
-        Composante composante = composanteRepository.findById(composanteId).orElseThrow(() -> new EntityNotFoundException("Composante not found"));
-        Filiere filiere = filiereRepository.findById(filiereId).orElseThrow(() -> new EntityNotFoundException("Filiere not found"));
-        composante.addFiliere(filiere);
-        composante = composanteRepository.save(composante);
-        return composanteEntityToDto(composante);
-    }
-
-    @Override
-    public ComposanteDto removeFiliereComposanteById(Long composanteId, Long filiereId) {
-        Composante composante = composanteRepository.findById(composanteId).orElseThrow(() -> new EntityNotFoundException("Composante not found"));
-        Filiere filiere = filiereRepository.findById(filiereId).orElseThrow(() -> new EntityNotFoundException("Filiere not found"));
-        composante.removeFiliere(filiere);
         composante = composanteRepository.save(composante);
         return composanteEntityToDto(composante);
     }

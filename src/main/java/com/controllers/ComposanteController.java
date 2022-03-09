@@ -50,38 +50,6 @@ public class ComposanteController {
     }
 
     /**
-     * Methode pour ajouter un gestionnaire à une composante grace à leur id
-     */
-    @PutMapping("/addGestionnaire/")
-    public ComposanteDto addGestionnaireComposanteById(@RequestParam Long idComposante, @RequestParam Long idGestionnaire){
-        return composanteService.addGestionnaireComposanteById(idComposante, idGestionnaire);
-    }
-
-    /**
-     * Methode pour supprimer un gestionnaire d'une composante grace à leur id
-     */
-    @DeleteMapping("/removeGestionnaire/")
-    public ComposanteDto removeGestionnaireComposanteById(@RequestParam Long idComposante, @RequestParam Long idGestionnaire){
-        return composanteService.removeGestionnaireComposanteById(idComposante, idGestionnaire);
-    }
-
-    /**
-     * Methode pour ajouter un gestionnaire à une composante grace à leur id
-     */
-    @PutMapping("/addFiliere/")
-    public ComposanteDto addFiliereComposanteById(@RequestParam Long idComposante, @RequestParam Long idFiliere){
-        return composanteService.addFiliereComposanteById(idComposante, idFiliere);
-    }
-
-    /**
-     * Methode pour supprimer un gestionnaire d'une composante grace à leur id
-     */
-    @DeleteMapping("/removeFiliere/")
-    public ComposanteDto removeFiliereComposanteById(@RequestParam Long idComposante, @RequestParam Long idFiliere){
-        return composanteService.removeFiliereComposanteById(idComposante, idFiliere);
-    }
-
-    /**
      * Delete a composante by its id
      */
     @DeleteMapping("/{id}")
