@@ -40,7 +40,7 @@ class VacataireListe extends Component {
                 <td style={{whiteSpace: 'nowrap'}}>{vacataire.mail}</td>
                 <td>
                     <ButtonGroup>
-                        <Button size="sm" color="primary" tag={Link} to={"/vacataireEditer/" + vacataire.id}>Edit</Button>
+                        <Button size="sm" color="primary" tag={Link} to={"/vacataireModifier/" + vacataire.id}>Edit</Button>
                         <Button size="sm" color="danger" onClick={() => this.remove(vacataire.id)}>Delete</Button>
                     </ButtonGroup>
                 </td>
@@ -54,7 +54,7 @@ class VacataireListe extends Component {
                     <div className="float-right">
                         <Button color="success" tag={Link} to="/vacataireCreer">Ajouter vacataire</Button>
                     </div>
-                    <h3>My JUG Tour</h3>
+                    <h3>Liste des vacataires</h3>
                     <Table className="mt-4">
                         <thead>
                         <tr>
