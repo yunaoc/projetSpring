@@ -29,10 +29,7 @@ class VacataireCreer extends Component {
         const value = target.value;
         const name = target.name;
         let item = {...this.state.item};
-        /*if([name].toString() === "motDePasse")
-            item[name] = bcrypt.hashSync(value, '$2a$10$81C0NmOGFacMZsWp20poXO');
-        else*/
-            item[name] = value;
+        item[name] = value;
 
         this.setState({item});
     }
