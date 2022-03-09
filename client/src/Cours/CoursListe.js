@@ -32,8 +32,6 @@ class CoursListe extends Component {
 
     render() {
         const {lesCours} = this.state;
-
-        console.log(lesCours)
         const listeDesCours = lesCours.map(cours => {
             const filieres = cours.lesFilieres.map(filiere => {
                 return <div>{filiere.nomFiliere}</div>;
@@ -60,7 +58,7 @@ class CoursListe extends Component {
                 <Menu/>
                 <Container fluid>
                     <div className="float-right">
-                        <Button color="success" tag={Link} to="/vacataireCreer">Ajouter cours</Button>
+                        <Button color="success" tag={Link} to="/coursCreer">Ajouter cours</Button>
                     </div>
                     <h3>Liste des cours</h3>
                     <Table className="mt-4">
