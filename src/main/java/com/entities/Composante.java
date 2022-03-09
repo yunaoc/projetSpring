@@ -12,6 +12,7 @@ public class Composante {
     @Id
     @GeneratedValue
     private Long idComposante;
+    @Column(unique=true)
     private String nomComposante;
     @OneToMany
     private List<Filiere> lesFilieres;
