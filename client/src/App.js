@@ -3,6 +3,8 @@ import './App.css';
 import Home from './Accueil';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import GestionnairesList from './Gestionnaire/GestionnaireListe';
+import GestionnaireModifier from './Gestionnaire/GestionnaireModifier';
+import GestionnaireAjouter from './Gestionnaire/GestionnaireAjouter';
 
 class App extends Component {
   render() {
@@ -11,6 +13,8 @@ class App extends Component {
           <Switch>
             <Route path='/' exact={true} component={Home}/>
             <Route path='/gestionnaire' exact={true} component={GestionnairesList}/>
+            <Route path='/gestionnaire/modifier/:id' component={GestionnaireModifier}/>
+            <Route path='/gestionnaire/nouveau' exact={true} component={GestionnaireAjouter}/>
           </Switch>
         </Router>
     )

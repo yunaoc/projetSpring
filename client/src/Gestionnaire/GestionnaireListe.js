@@ -48,7 +48,7 @@ class GestionnaireList extends Component {
                 <td style={{whiteSpace: 'nowrap'}}>{gestionnaire.mail}</td>
                 <td>
                     <ButtonGroup>
-                        <Button size="sm" color="primary" tag={Link} to={"/gestionnaires/" + gestionnaire.id}>Modifier</Button>
+                        <Button size="sm" color="primary" tag={Link} to={"/gestionnaire/modifier/" + gestionnaire.id}>Modifier</Button>
                         <Button size="sm" color="danger" onClick={() => this.remove(gestionnaire.id)}>Supprimer</Button>
                     </ButtonGroup>
                 </td>
@@ -58,6 +58,7 @@ class GestionnaireList extends Component {
         return (
             <div>
                 <Menu/>
+                <p></p>
                 <Container fluid>
                     <div className="float-right">
                         <Button color="success" tag={Link} to="/gestionnaire/nouveau">Ajouter Gestionnaire</Button>

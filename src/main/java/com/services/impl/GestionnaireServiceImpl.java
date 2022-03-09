@@ -47,16 +47,17 @@ public class GestionnaireServiceImpl implements GestionnaireService {
     @Override
     public GestionnaireDto updateGestionnaire(GestionnaireDto gestionnaireDto, Long gestionnaireId) {
         Gestionnaire gestionnaire = gestionnaireRepository.findById(gestionnaireId).orElseThrow(() -> new EntityNotFoundException("Gestionnaire not found"));
-        if(gestionnaireDto.getNomUsuel() != null)
+        GestionnaireDto gestioDto = gestionnaireEntityToDto(gestionnaire);
+        if(gestionnaireDto.getNomUsuel() != null || gestionnaireDto.getNomUsuel().equals(gestioDto.getNomUsuel()) || gestionnaireDto.getMail() != "")
             gestionnaire.setNomUsuel(gestionnaireDto.getNomUsuel());
 
-        if(gestionnaireDto.getPrenom() != null)
+        if(gestionnaireDto.getPrenom() != null || gestionnaireDto.getPrenom().equals(gestioDto.getPrenom()) || gestionnaireDto.getMail() != "")
             gestionnaire.setPrenom(gestionnaireDto.getPrenom());
 
-        if(gestionnaireDto.getMotDePasse() != null)
+        if(gestionnaireDto.getMotDePasse() != null || gestionnaireDto.getMotDePasse().equals(gestioDto.getMotDePasse()) || gestionnaireDto.getMail() != "")
             gestionnaire.setMotDePasse(gestionnaireDto.getMotDePasse());
 
-        if(gestionnaireDto.getMail() != null)
+        if(gestionnaireDto.getMail() != null || gestionnaireDto.getMail().equals(gestioDto.getMail()) || gestionnaireDto.getMail() != "")
             gestionnaire.setMail(gestionnaireDto.getMail());
 
         gestionnaire = gestionnaireRepository.save(gestionnaire);
