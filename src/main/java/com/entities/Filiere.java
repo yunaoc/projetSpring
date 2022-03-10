@@ -14,7 +14,9 @@ public class Filiere {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idFiliere;
+    @Column(unique=true)
     private String codeFiliere;
+    @Column(unique=true)
     private String nomFiliere;
     @ManyToOne
     @JoinColumn(name = "id_composante")

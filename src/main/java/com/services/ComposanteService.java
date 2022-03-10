@@ -21,26 +21,6 @@ public interface ComposanteService {
     ComposanteDto updateComposanteById(Long composanteId, ComposanteDto composanteDto);
 
     /**
-     * Ajoute une filière à une composante
-     */
-    ComposanteDto addFiliereComposanteById(Long composanteId, Long filiereId);
-
-    /**
-     * Supprime un filière d'une composante
-     */
-    ComposanteDto removeFiliereComposanteById(Long composanteId, Long filiereId);
-
-    /**
-     * Ajoute un gestionnaire à un composante
-     */
-    ComposanteDto addGestionnaireComposanteById(Long composanteId, Long gestionnaireId);
-
-    /**
-     * Supprime un gestionnaire d'une composante
-     */
-    ComposanteDto removeGestionnaireComposanteById(Long composanteId, Long gestionnaireId);
-
-    /**
      * Supprimer un composante
      */
     boolean deleteComposante(Long composanteId);
