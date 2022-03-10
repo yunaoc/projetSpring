@@ -28,7 +28,6 @@ class FiliereModifier extends Component {
 
     async componentDidMount() {
         const filiere = await (await fetch(`/badgeuse/filiere/${this.props.match.params.id}`)).json();
-        console.log(filiere)
         this.setState({item: filiere});
         await this.getOptions();
     }
