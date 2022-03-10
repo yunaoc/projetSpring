@@ -102,7 +102,6 @@ class VacataireModifier extends Component {
             if(choixCours.id !== 0)
                 this.addCours(choixCours.id).catch(err => { console.log(err) });
         }
-
     }
 
     validate(){
@@ -168,16 +167,7 @@ class VacataireModifier extends Component {
 
     render() {
         const {item} = this.state;
-        const {lesCours} = this.state;
-        const {choixCours} = this.state;
         const err = this.state.errors;
-
-        /*const listeDesCours = lesCours.map(cours => {
-            if(choixCours.id !== cours.id )
-                return <option value={cours.id} onChange={this.handleChangeSelection(cours.id)}>{cours.intitule}</option>
-            else
-                return <option value='0' onChange={this.handleChangeSelection('0)}>Pas de cours</option>
-        });*/
 
         return <div>
             <Menu/>

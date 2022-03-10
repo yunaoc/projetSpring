@@ -18,10 +18,17 @@ class VacataireCreer extends Component {
         super(props);
         this.state = {
             item: this.emptyItem,
+            vacataires : [],
             errors: {}
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentDidMount() {
+        fetch('badgeuse/vacataire/')
+            .then(response => response.json())
+            .then(data => this.setState({vacataires: data}));
     }
 
     handleChange(event) {
@@ -52,6 +59,20 @@ class VacataireCreer extends Component {
         }
     }
 
+    checkMail(val) {
+        const existe = this.state.vacataires.map(vacataire => {
+            return vacataire.mail === val
+        });
+        return existe.some(item => true === item);
+    }
+
+    checkLogin(val) {
+        const existe = this.state.vacataires.map(vacataire => {
+            return vacataire.login === val
+        });
+        return existe.some(item => true === item);
+    }
+
     validate(){
         let input = this.state.item;
         let errors = {};
@@ -72,6 +93,11 @@ class VacataireCreer extends Component {
             errors["mail"] = "Saisir une adresse mail";
         }
 
+        if (this.checkMail(input["mail"])) {
+            isValid = false;
+            errors["mail"] = "Adresse mail déjà utilisée";
+        }
+
         if (typeof input["mail"] !== "undefined") {
 
             const pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
@@ -84,6 +110,11 @@ class VacataireCreer extends Component {
         if (!input["login"]) {
             isValid = false;
             errors["login"] = "Saisir un login";
+        }
+
+        if (this.checkLogin(input["login"])) {
+            isValid = false;
+            errors["login"] = "Pseudo déjà utilisé";
         }
 
         if (!input["motDePasse"]) {
