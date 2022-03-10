@@ -11,9 +11,15 @@ class CoursListe extends Component {
         this.remove = this.remove.bind(this);
     }
 
+
+
     async componentDidMount() {
         const cours = await (await fetch(`/badgeuse/cours/`)).json();
         this.setState({lesCours: cours});
+        if(!window.location.hash) {
+            window.location = window.location + '#loaded';
+            window.location.reload();
+        }
     }
 
     async remove(id) {
