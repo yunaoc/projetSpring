@@ -182,8 +182,8 @@ class VacataireCreer extends Component {
                         </FormGroup>
                     </div>
                     <FormGroup>
-                        <Button color="primary" type="submit">Save</Button>{' '}
-                        <Button color="secondary" tag={Link} to="/vacataireListe">Cancel</Button>
+                        <Button color="primary" type="submit">Confirmer</Button>{' '}
+                        <Button color="secondary" tag={Link} to="/vacataireListe">Annuler</Button>
                     </FormGroup>
                 </Form>
             </Container>

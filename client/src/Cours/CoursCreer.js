@@ -107,12 +107,12 @@ class CoursCreer extends Component {
             if(this.checkFiliere(filiere.idFiliere))
                 return <tr>
                     <td>{filiere.nomFiliere}</td>
-                    <td><Button size="sm" color="danger" onClick={() => this.removeFiliere(filiere.idFiliere)}>Delete</Button></td>
+                    <td><Button size="sm" color="danger" onClick={() => this.removeFiliere(filiere.idFiliere)}>Enlever</Button></td>
                 </tr>
             else
                 return <tr>
                     <td>{filiere.nomFiliere}</td>
-                    <td><Button size="sm" onClick={() => this.addFiliere(filiere.idFiliere)}>Add</Button></td>
+                    <td><Button size="sm" onClick={() => this.addFiliere(filiere.idFiliere)}>Ajouter</Button></td>
                 </tr>
         });
         return <div>
@@ -125,19 +125,19 @@ class CoursCreer extends Component {
                         <span >{err.intitule}</span>
                         <Input type="text" name="intitule" id="intitule" onChange={this.handleChange}/>
                     </FormGroup>
+                    <div>
+                        <h4>Filières</h4>
+                        <Table>
+                            <tbody>
+                            {filieres}
+                            </tbody>
+                        </Table>
+                    </div>
                     <FormGroup>
-                        <Button color="primary" type="submit">Save</Button>{' '}
-                        <Button color="secondary" tag={Link} to="/coursListe">Cancel</Button>
+                        <Button color="primary" type="submit">Confirmer</Button>{' '}
+                        <Button color="secondary" tag={Link} to="/coursListe">Annuler</Button>
                     </FormGroup>
                 </Form>
-                <div>
-                    <h4>Filières</h4>
-                    <Table>
-                        <tbody>
-                        {filieres}
-                        </tbody>
-                    </Table>
-                </div>
             </Container>
         </div>
     }

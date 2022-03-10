@@ -45,8 +45,8 @@ class CoursListe extends Component {
                 <td style={{whiteSpace: 'nowrap'}}>{vacataires}</td>
                 <td>
                     <ButtonGroup>
-                        <Button size="sm" color="primary" tag={Link} to={"/coursModifier/" + cours.id}>Edit</Button>
-                        <Button size="sm" color="danger" onClick={() => this.remove(cours.id)}>Delete</Button>
+                        <Button size="sm" color="primary" tag={Link} to={"/coursModifier/" + cours.id}>Modifier</Button>
+                        <Button size="sm" color="danger" onClick={() => this.remove(cours.id)}>Supprimer</Button>
                     </ButtonGroup>
                 </td>
             </tr>

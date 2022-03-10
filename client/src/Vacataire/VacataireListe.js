@@ -40,8 +40,8 @@ class VacataireListe extends Component {
                 <td style={{whiteSpace: 'nowrap'}}>{vacataire.mail}</td>
                 <td>
                     <ButtonGroup>
-                        <Button size="sm" color="primary" tag={Link} to={"/vacataireModifier/" + vacataire.id}>Edit</Button>
-                        <Button size="sm" color="danger" onClick={() => this.remove(vacataire.id)}>Delete</Button>
+                        <Button size="sm" color="primary" tag={Link} to={"/vacataireModifier/" + vacataire.id}>Modifier</Button>
+                        <Button size="sm" color="danger" onClick={() => this.remove(vacataire.id)}>Supprimer</Button>
                     </ButtonGroup>
                 </td>
             </tr>

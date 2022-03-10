@@ -16,6 +16,7 @@ import FiliereCreer from "./Filiere/FiliereCreer";
 import FiliereModifier from "./Filiere/FiliereModifier";
 import ComposanteListe from './Composante/ComposanteListe';
 import ComposanteCreer from "./Composante/ComposanteCreer";
+import ComposanteModifier from "./Composante/ComposanteModifier";
 
 class App extends Component {
   render() {

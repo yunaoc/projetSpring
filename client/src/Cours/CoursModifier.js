@@ -111,12 +111,12 @@ class CoursModifier extends Component {
             if(this.checkFiliere(filiere.idFiliere))
                 return <tr>
                     <td>{filiere.nomFiliere}</td>
-                    <td><Button size="sm" color="danger" onClick={() => this.removeFiliere(filiere.idFiliere)}>Delete</Button></td>
+                    <td><Button size="sm" color="danger" onClick={() => this.removeFiliere(filiere.idFiliere)}>Enlever</Button></td>
                 </tr>
             else
                 return <tr>
                     <td>{filiere.nomFiliere}</td>
-                    <td><Button size="sm" onClick={() => this.addFiliere(filiere.idFiliere)}>Add</Button></td>
+                    <td><Button size="sm" onClick={() => this.addFiliere(filiere.idFiliere)}>Ajouter</Button></td>
                 </tr>
         });
         return <div>
@@ -130,7 +130,7 @@ class CoursModifier extends Component {
                         <Input type="text" name="intitule" id="intitule" value={item.intitule} onChange={this.handleChange}/>
                     </FormGroup>
                     <FormGroup>
-                        <Button color="primary" type="submit">Save</Button>{' '}
+                        <Button color="primary" type="submit">Enregistrer</Button>{' '}
                     </FormGroup>
                 </Form>
                 <div>

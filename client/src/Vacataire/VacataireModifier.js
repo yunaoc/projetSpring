@@ -236,7 +236,7 @@ class VacataireModifier extends Component {
                     </div>
 
                     <FormGroup>
-                        <Button color="primary" type="submit">Valider</Button>{' '}
+                        <Button color="primary" type="submit">Confimer</Button>{' '}
                         <Button color="secondary" tag={Link} to="/vacataireListe">Annuler</Button>
                     </FormGroup>
                 </Form>
