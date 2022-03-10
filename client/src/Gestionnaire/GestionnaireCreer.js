@@ -29,6 +29,7 @@ class GestionnaireCreer extends Component {
             item: this.emptyItem,
             isLoading: true,
             composantes: [],
+            gestionnaires : [],
             errors: {}
         };
         this.handleChange = this.handleChange.bind(this);
@@ -67,9 +68,23 @@ class GestionnaireCreer extends Component {
     }
 
     async componentDidMount() {
-        const response = await fetch('/badgeuse/composante/');
-        const body = await response.json();
-        this.setState({ composantes: body, isLoading: false });
+        const response1 = await (await fetch('/badgeuse/composante/')).json();
+        const response2 = await (await fetch(`/badgeuse/gestionnaire/`)).json();
+        this.setState({ gestionnaires: response2, composantes: response1, isLoading: false });
+    }
+
+    checkMail(val) {
+        const existe = this.state.gestionnaires.map(gestionnaire => {
+            return gestionnaire.mail === val
+        });
+        return existe.some(item => true === item);
+    }
+
+    checkLogin(val) {
+        const existe = this.state.gestionnaires.map(gestionnaire => {
+            return gestionnaire.login === val
+        });
+        return existe.some(item => true === item);
     }
 
     validate(){
@@ -115,6 +130,16 @@ class GestionnaireCreer extends Component {
         if (input["motDePasse"] !== input["motDePasse2"]) {
             isValid = false;
             errors["motDePasse"] = "Les mots de passe sont différents";
+        }
+
+        if (this.checkMail(input["mail"])) {
+            isValid = false;
+            errors["mail"] = "Adresse mail déjà utilisée";
+        }
+
+        if (this.checkLogin(input["login"])) {
+            isValid = false;
+            errors["login"] = "Pseudo déjà utilisé";
         }
 
         this.setState({
@@ -189,7 +214,7 @@ class GestionnaireCreer extends Component {
 
                     <FormGroup>
                         <Button color="primary" type="submit">Enregistrer</Button>{' '}
-                        <Button color="secondary" tag={Link} to="/GestionnaireListe">Annuler</Button>
+                        <Button color="secondary" tag={Link} to="/gestionnaire">Annuler</Button>
                     </FormGroup>
                 </Form>
             </Container>

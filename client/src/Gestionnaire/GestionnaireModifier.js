@@ -18,7 +18,8 @@ class GestionnaireModifier extends Component {
         super(props);
         this.state = {
             item: this.emptyItem,
-            errors: {}
+            errors: {},
+            gestionnaires : []
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -27,7 +28,8 @@ class GestionnaireModifier extends Component {
     async componentDidMount() {
         const gestionnaire = await (await fetch(`/badgeuse/gestionnaire/${this.props.match.params.id}`)).json();
         gestionnaire.motDePasse=null;
-        this.setState({item: gestionnaire});
+        const gestionnaires = await (await fetch(`/badgeuse/gestionnaire/`)).json();
+        this.setState({gestionnaires: gestionnaires , item : gestionnaire});
     }
 
     handleChange(event) {
@@ -43,7 +45,6 @@ class GestionnaireModifier extends Component {
         event.preventDefault();
 
         if(this.validate()) {
-            this.state.item["motDePasse"] = bcrypt.hashSync(this.state.item["motDePasse"], '$2a$10$81C0NmOGFacMZsWp20poXO');
             const {item} = this.state;
             await fetch('/badgeuse/gestionnaire/?id=' + item.id, {
                 method: 'PUT',
@@ -55,6 +56,14 @@ class GestionnaireModifier extends Component {
             });
             this.props.history.push('/gestionnaire');
         }
+    }
+
+    checkMail(val) {
+        const existe = this.state.gestionnaires.map(gestionnaire => {
+            if(gestionnaire.id !== this.state.item.id)
+                return gestionnaire.mail === val
+        });
+        return existe.some(item => true === item);
     }
 
     validate(){
@@ -80,8 +89,15 @@ class GestionnaireModifier extends Component {
             if (input["motDePasse"] !== input["motDePasse2"]) {
                 isValid = false;
                 errors["motDePasse"] = "Les mots de passe sont diffÃ©rents";
+            }else{
+                this.state.item["motDePasse"] = bcrypt.hashSync(this.state.item["motDePasse"], '$2a$10$81C0NmOGFacMZsWp20poXO');
             }
 
+        }
+
+        if (this.checkMail(input["mail"])) {
+            isValid = false;
+            errors["mail"] = "Adresse mail déjà utilisée";
         }
 
         this.setState({
