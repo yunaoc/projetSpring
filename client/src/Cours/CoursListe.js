@@ -16,10 +16,6 @@ class CoursListe extends Component {
     async componentDidMount() {
         const cours = await (await fetch(`/badgeuse/cours/`)).json();
         this.setState({lesCours: cours});
-        if(!window.location.hash) {
-            window.location = window.location + '#loaded';
-            window.location.reload();
-        }
     }
 
     async remove(id) {
@@ -44,7 +40,6 @@ class CoursListe extends Component {
             const vacataires = cours.lesVacataires.map(vacataire => {
                 return <div>{vacataire.nomUsuel} {vacataire.prenom}</div>;
             });
-
             return <tr key={cours.id}>
                 <td style={{whiteSpace: 'nowrap'}}>{cours.intitule}</td>
                 <td style={{whiteSpace: 'nowrap'}}>{filieres}</td>

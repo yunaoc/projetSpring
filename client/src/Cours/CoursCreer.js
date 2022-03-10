@@ -50,7 +50,9 @@ class CoursCreer extends Component {
                 body: JSON.stringify(item),
             })
             this.ajoutFilieres()
-            this.props.history.push('/coursListe');
+            setTimeout(function() {
+                window.location.replace('/coursListe');
+            }, 1000);
         }
     }
 
@@ -71,6 +73,7 @@ class CoursCreer extends Component {
     async ajoutFilieres(){
         const lesCours = await (await fetch(`/badgeuse/cours/`)).json();
         const {aAjouter} = this.state
+        console.log(aAjouter)
         const lesId = lesCours.map(cours => {
             return cours.id
         });
