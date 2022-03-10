@@ -25,6 +25,7 @@ public class FiliereServiceImpl implements FiliereService {
     @Override
     public FiliereDto createFiliere(FiliereDto filiereDto, Long idComposante) {
         Composante composante = composanteRepository.findById(idComposante).orElseThrow(() -> new EntityNotFoundException("Composante not found"));
+        filiereDto.setMaComposante(composante);
         Filiere filiere = filiereDtoToEntity(filiereDto);
         filiere = filiereRepository.save(filiere);
         return filiereEntityToDto(filiere);
@@ -72,6 +73,7 @@ public class FiliereServiceImpl implements FiliereService {
         filiereDto.setIdFiliere(filiere.getIdFiliere());
         filiereDto.setNomFiliere(filiere.getNomFiliere());
         filiereDto.setCodeFiliere(filiere.getCodeFiliere());
+        filiereDto.setMaComposante(filiere.getMaComposante());
         return filiereDto;
     }
 
@@ -83,6 +85,7 @@ public class FiliereServiceImpl implements FiliereService {
         filiere.setIdFiliere(filiereDto.getIdFiliere());
         filiere.setNomFiliere(filiereDto.getNomFiliere());
         filiere.setCodeFiliere(filiereDto.getCodeFiliere());
+        filiere.setMaComposante(filiereDto.getMaComposante());
         return filiere;
     }
 }
