@@ -3,6 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
 import Menu from '../Menu';
 import bcrypt from "bcryptjs";
+import Select from 'react-select';
 
 class VacataireModifier extends Component {
 
@@ -18,16 +19,45 @@ class VacataireModifier extends Component {
         super(props);
         this.state = {
             item: this.emptyItem,
+            lesCours : [],
+            choixCours : { id: 0, intitule: "Pas de cours" },
+            optionsCours : [],
+            coursOriginal : { id: 0, intitule: "Pas de cours" },
             errors: {}
         };
         this.handleChange = this.handleChange.bind(this);
+        this.handleChangeSelection = this.handleChangeSelection.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     async componentDidMount() {
         const vacataire = await (await fetch(`/badgeuse/vacataire/${this.props.match.params.id}`)).json();
+        const cours = await (await fetch(`/badgeuse/cours/`)).json();
         vacataire.motDePasse=null;
         this.setState({item: vacataire});
+        this.setState({lesCours: cours});
+        const sonCours = this.checkCours(this.state.item.login)
+        if(typeof sonCours !== "undefined"){
+            this.setState({choixCours: { id: sonCours.id, intitule: sonCours.intitule }});
+            this.setState({coursOriginal: { id: sonCours.id, intitule: sonCours.intitule }});
+        }
+        this.setState({optionsCours: this.state.lesCours});
+        this.setState(previousState => ({
+            optionsCours: [...previousState.optionsCours, { id: 0, intitule: "Pas de cours" }]
+        }));
+
+
+    }
+
+    checkCours(val) {
+        const existe = this.state.lesCours.map(cours => {
+            const existe2 =cours.lesVacataires.map(vacataire => {
+                return vacataire.login === val
+            });
+            if(existe2.length!==0 && existe2[0])
+                return cours
+        });
+        return existe.filter(cours=>cours!==undefined)[0];
     }
 
     handleChange(event) {
@@ -39,12 +69,17 @@ class VacataireModifier extends Component {
         this.setState({item});
     }
 
+    handleChangeSelection = (choixCours) => {
+        this.setState({ choixCours });
+    }
+
     async handleSubmit(event) {
         event.preventDefault();
 
         if(this.validate()) {
-            this.state.item["motDePasse"] = bcrypt.hashSync(this.state.item["motDePasse"], '$2a$10$81C0NmOGFacMZsWp20poXO');
+            this.handleSubmitSelection()
             const {item} = this.state;
+
             await fetch('/badgeuse/vacataire/update/?id=' + item.id, {
                 method: 'PUT',
                 headers: {
@@ -55,6 +90,19 @@ class VacataireModifier extends Component {
             });
             this.props.history.push('/vacataireListe');
         }
+    }
+
+    handleSubmitSelection(){
+        const {choixCours} = this.state
+        const {coursOriginal} = this.state
+        if(choixCours !== coursOriginal){
+            if(coursOriginal.id !== 0) {
+                this.removeCours(coursOriginal.id).catch(err => { console.log(err) });
+            }
+            if(choixCours.id !== 0)
+                this.addCours(choixCours.id).catch(err => { console.log(err) });
+        }
+
     }
 
     validate(){
@@ -86,7 +134,8 @@ class VacataireModifier extends Component {
             if (input["motDePasse"] !== input["motDePasse2"]) {
                 isValid = false;
                 errors["motDePasse"] = "Les mots de passe sont différents";
-            }
+            } else
+                this.state.item["motDePasse"] = bcrypt.hashSync(input["motDePasse"], '$2a$10$81C0NmOGFacMZsWp20poXO');
         }
 
 
@@ -97,9 +146,38 @@ class VacataireModifier extends Component {
         return isValid;
     }
 
+    async addCours(id) {
+        await fetch(`../badgeuse/cours/addVacataire/?idCours=${id}&idVacataire=${this.state.item.id}`, {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+    }
+
+    async removeCours(id) {
+        await fetch(`/badgeuse/cours/removeVacataire/?idCours=${id}&idVacataire=${this.state.item.id}`, {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+    }
+
     render() {
         const {item} = this.state;
+        const {lesCours} = this.state;
+        const {choixCours} = this.state;
         const err = this.state.errors;
+
+        /*const listeDesCours = lesCours.map(cours => {
+            if(choixCours.id !== cours.id )
+                return <option value={cours.id} onChange={this.handleChangeSelection(cours.id)}>{cours.intitule}</option>
+            else
+                return <option value='0' onChange={this.handleChangeSelection('0)}>Pas de cours</option>
+        });*/
 
         return <div>
             <Menu/>
@@ -118,12 +196,24 @@ class VacataireModifier extends Component {
                                    onChange={this.handleChange} autoComplete="prenom"/>
                         </FormGroup>
                     </div>
-                    <FormGroup>
-                        <Label for="mail">Email</Label><br/>
-                        <span >{err.mail}</span>
-                        <Input type="text" name="mail" id="mail" value={item.mail}
-                               onChange={this.handleChange} autoComplete="mail"/>
-                    </FormGroup>
+                    <div className="row">
+                        <FormGroup className="col-md-5 mb-3">
+                            <Label for="mail">Email</Label><br/>
+                            <span >{err.mail}</span>
+                            <Input type="text" name="mail" id="mail" value={item.mail}
+                                   onChange={this.handleChange} autoComplete="mail"/>
+                        </FormGroup>
+                        <FormGroup className="col-md-5 mb-3">
+                            <Label for="selectionCours">Cours</Label><br/>
+                            <Select
+                                value={this.state.choixCours}
+                                options={this.state.optionsCours}
+                                getOptionLabel ={(cours)=>cours.intitule}
+                                getOptionValue ={(cours)=>cours.id}
+                                onChange={this.handleChangeSelection}
+                            />
+                        </FormGroup>
+                    </div>
                     <FormGroup>
                         <Label for="login">Login : {item.login}</Label>
                     </FormGroup>
