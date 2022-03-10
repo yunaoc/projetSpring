@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
+import {Button, Container, Form, FormGroup, Input, Label, Table} from 'reactstrap';
 import Menu from '../Menu';
 
 class CoursCreer extends Component {
 
     emptyItem = {
+        id : 0,
         intitule: ''
     };
 
@@ -13,10 +14,17 @@ class CoursCreer extends Component {
         super(props);
         this.state = {
             item: this.emptyItem,
+            lesFilieres : [],
+            aAjouter : [],
             errors : {}
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    async componentDidMount() {
+        const filieres = await (await fetch(`/badgeuse/filiere/`)).json();
+        this.setState({lesFilieres: filieres});
     }
 
     handleChange(event) {
@@ -32,7 +40,6 @@ class CoursCreer extends Component {
     async handleSubmit(event) {
         event.preventDefault();
         if(this.validate()) {
-            console.log(this.state);
             const {item} = this.state;
             await fetch('/badgeuse/cours', {
                 method: 'POST',
@@ -41,7 +48,8 @@ class CoursCreer extends Component {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(item),
-            });
+            })
+            this.ajoutFilieres()
             this.props.history.push('/coursListe');
         }
     }
@@ -60,8 +68,53 @@ class CoursCreer extends Component {
         return isValid;
     }
 
+    async ajoutFilieres(){
+        const lesCours = await (await fetch(`/badgeuse/cours/`)).json();
+        const {aAjouter} = this.state
+        const lesId = lesCours.map(cours => {
+            return cours.id
+        });
+        const idCours = Math.max(...lesId)
+        for (var i = 0; i < aAjouter.length ; i++) {
+            await fetch(`../badgeuse/cours/addFiliere/?idCours=${idCours}&idFiliere=${aAjouter[i]}`, {
+                method: 'PUT',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            })
+        }
+    }
+
+    addFiliere(id) {
+        this.setState(previousState => ({
+            aAjouter: [...previousState.aAjouter, id]
+        }));
+    }
+
+    removeFiliere(id) {
+        const aAjouter = this.state.aAjouter.filter(item => item !== id);
+        this.setState({ aAjouter: aAjouter });
+    }
+
+    checkFiliere(val) {
+        return this.state.aAjouter.some(item => val === item);
+    }
+
     render() {
         const err = this.state.errors;
+        const filieres = this.state.lesFilieres.map(filiere => {
+            if(this.checkFiliere(filiere.idFiliere))
+                return <tr>
+                    <td>{filiere.nomFiliere}</td>
+                    <td><Button size="sm" color="danger" onClick={() => this.removeFiliere(filiere.idFiliere)}>Delete</Button></td>
+                </tr>
+            else
+                return <tr>
+                    <td>{filiere.nomFiliere}</td>
+                    <td><Button size="sm" onClick={() => this.addFiliere(filiere.idFiliere)}>Add</Button></td>
+                </tr>
+        });
         return <div>
             <Menu/>
             <Container>
@@ -77,6 +130,14 @@ class CoursCreer extends Component {
                         <Button color="secondary" tag={Link} to="/coursListe">Cancel</Button>
                     </FormGroup>
                 </Form>
+                <div>
+                    <h4>Filières</h4>
+                    <Table>
+                        <tbody>
+                        {filieres}
+                        </tbody>
+                    </Table>
+                </div>
             </Container>
         </div>
     }

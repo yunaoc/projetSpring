@@ -104,13 +104,6 @@ class CoursModifier extends Component {
         return existe.some(item => true === item);
     }
 
-    checkVacataire(val) {
-        const existe = this.state.item.lesVacataires.map(vacataire => {
-            return vacataire.login === val
-        });
-        return existe.some(item => true === item);
-    }
-
     render() {
         const {item} = this.state;
         const err = this.state.errors;
@@ -140,7 +133,7 @@ class CoursModifier extends Component {
                         <Button color="primary" type="submit">Save</Button>{' '}
                     </FormGroup>
                 </Form>
-                    <div>
+                <div>
                     <h4>Filières</h4>
                     <Table>
                         <tbody>
