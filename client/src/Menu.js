@@ -20,6 +20,7 @@ export default class Menu extends Component {
             <NavbarBrand tag={Link} to="/">Accueil</NavbarBrand>
             <NavbarBrand tag={Link} to="/vacataireListe">Vacataires</NavbarBrand>
             <NavbarBrand tag={Link} to="/gestionnaire">Liste Gestionnaire</NavbarBrand>
+            <NavbarBrand tag={Link} to="/coursListe">Cours</NavbarBrand>
             <NavbarToggler onClick={this.toggle}/>
         </Navbar>;
     }
