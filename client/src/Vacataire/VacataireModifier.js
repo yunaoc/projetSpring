@@ -48,8 +48,6 @@ class VacataireModifier extends Component {
         this.setState(previousState => ({
             optionsCours: [...previousState.optionsCours, { id: 0, intitule: "Pas de cours" }]
         }));
-
-
     }
 
     checkCours(val) {
