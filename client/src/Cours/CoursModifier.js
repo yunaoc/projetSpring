@@ -99,7 +99,7 @@ class CoursModifier extends Component {
 
     checkFiliere(val) {
         const existe = this.state.item.lesFilieres.map(filiere => {
-            return filiere.nomFiliere === val
+            return filiere.idFiliere === val
         });
         return existe.some(item => true === item);
     }
@@ -108,7 +108,7 @@ class CoursModifier extends Component {
         const {item} = this.state;
         const err = this.state.errors;
         const filieres = this.state.lesFilieres.map(filiere => {
-            if(this.checkFiliere(filiere.nomFiliere))
+            if(this.checkFiliere(filiere.idFiliere))
                 return <tr>
                     <td>{filiere.nomFiliere}</td>
                     <td><Button size="sm" color="danger" onClick={() => this.removeFiliere(filiere.idFiliere)}>Delete</Button></td>

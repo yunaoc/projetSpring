@@ -11,10 +11,9 @@ class CoursListe extends Component {
         this.remove = this.remove.bind(this);
     }
 
-    componentDidMount() {
-        fetch('badgeuse/cours/')
-            .then(response => response.json())
-            .then(data => this.setState({lesCours: data}));
+    async componentDidMount() {
+        const cours = await (await fetch(`/badgeuse/cours/`)).json();
+        this.setState({lesCours: cours});
     }
 
     async remove(id) {
