@@ -97,30 +97,6 @@ class CoursModifier extends Component {
         this.setState({item: cours});
     }
 
-    async addVacataire(id) {
-        await fetch(`../badgeuse/cours/addVacataire/?idCours=${this.state.item.id}&idVacataire=${id}`, {
-            method: 'PUT',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        })
-        const cours = await (await fetch(`/badgeuse/cours/${this.props.match.params.id}`)).json();
-        this.setState({item: cours});
-    }
-
-    async removeVacataire(id) {
-        await fetch(`../badgeuse/cours/removeVacataire/?idCours=${this.state.item.id}&idVacataire=${id}`, {
-            method: 'PUT',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        })
-        const cours = await (await fetch(`/badgeuse/cours/${this.props.match.params.id}`)).json();
-        this.setState({item: cours});
-    }
-
     checkFiliere(val) {
         const existe = this.state.item.lesFilieres.map(filiere => {
             return filiere.nomFiliere === val
@@ -150,18 +126,6 @@ class CoursModifier extends Component {
                     <td><Button size="sm" onClick={() => this.addFiliere(filiere.idFiliere)}>Add</Button></td>
                 </tr>
         });
-        const vacataires = this.state.lesVacataires.map(vacataire => {
-            if(this.checkVacataire(vacataire.login))
-                return <tr>
-                    <td>{vacataire.nomUsuel} {vacataire.prenom}</td>
-                    <td><Button size="sm" color="danger" onClick={() => this.removeVacataire(vacataire.id)}>Delete</Button></td>
-                </tr>
-            else
-                return <tr>
-                    <td>{vacataire.nomUsuel} {vacataire.prenom}</td>
-                    <td><Button size="sm" onClick={() => this.addVacataire(vacataire.id)}>Add</Button></td>
-                </tr>
-        });
         return <div>
             <Menu/>
             <Container>
@@ -176,23 +140,13 @@ class CoursModifier extends Component {
                         <Button color="primary" type="submit">Save</Button>{' '}
                     </FormGroup>
                 </Form>
-                <div className="row">
-                    <div className="col-md-5 mb-3">
-                        <h4>Filières</h4>
-                        <Table>
-                            <tbody>
-                                {filieres}
-                            </tbody>
-                        </Table>
-                    </div>
-                    <div className="col-md-5 mb-3">
-                        <h4>Vacataires</h4>
-                        <Table>
-                            <tbody>
-                                {vacataires}
-                            </tbody>
-                        </Table>
-                    </div>
+                    <div>
+                    <h4>Filières</h4>
+                    <Table>
+                        <tbody>
+                            {filieres}
+                        </tbody>
+                    </Table>
                 </div>
             </Container>
         </div>
