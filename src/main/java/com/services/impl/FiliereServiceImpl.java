@@ -26,7 +26,6 @@ public class FiliereServiceImpl implements FiliereService {
     public FiliereDto createFiliere(FiliereDto filiereDto, Long idComposante) {
         Composante composante = composanteRepository.findById(idComposante).orElseThrow(() -> new EntityNotFoundException("Composante not found"));
         filiereDto.setMaComposante(composante);
-        System.out.println(composante.getNomComposante());
         Filiere filiere = filiereDtoToEntity(filiereDto);
         filiere = filiereRepository.save(filiere);
         return filiereEntityToDto(filiere);
@@ -86,7 +85,7 @@ public class FiliereServiceImpl implements FiliereService {
         filiere.setIdFiliere(filiereDto.getIdFiliere());
         filiere.setNomFiliere(filiereDto.getNomFiliere());
         filiere.setCodeFiliere(filiereDto.getCodeFiliere());
-        filiere.setMaComposante(filiere.getMaComposante());
+        filiere.setMaComposante(filiereDto.getMaComposante());
         return filiere;
     }
 }

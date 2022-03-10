@@ -14,7 +14,7 @@ public class Composante {
     private Long idComposante;
     @Column(unique=true)
     private String nomComposante;
-    @OneToMany
+    @OneToMany(mappedBy = "maComposante")
     @JsonManagedReference
     private List<Filiere> lesFilieres;
     @OneToMany(mappedBy = "maComposante")
