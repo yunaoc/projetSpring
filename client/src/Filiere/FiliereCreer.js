@@ -51,7 +51,6 @@ class FiliereCreer extends Component {
         event.preventDefault();
 
         if(this.validate()) {
-            console.log(this.state.item);
             const item = {
                 "nomFiliere": this.state.item.nomFiliere,
                 "codeFiliere" : this.state.item.codeFiliere

@@ -38,7 +38,6 @@ class ComposanteModifier extends Component {
     async handleSubmit(event) {
         event.preventDefault();
         if(this.validate()) {
-            console.log(this.state);
             const {item} = this.state;
             await fetch('/badgeuse/composante/update/?idComposante=' + item.idComposante, {
                 method: 'PUT',
