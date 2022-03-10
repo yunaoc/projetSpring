@@ -23,7 +23,8 @@ class VacataireModifier extends Component {
             choixCours : { id: 0, intitule: "Pas de cours" },
             optionsCours : [],
             coursOriginal : { id: 0, intitule: "Pas de cours" },
-            errors: {}
+            errors: {},
+            vacataires : []
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleChangeSelection = this.handleChangeSelection.bind(this);
@@ -32,9 +33,11 @@ class VacataireModifier extends Component {
 
     async componentDidMount() {
         const vacataire = await (await fetch(`/badgeuse/vacataire/${this.props.match.params.id}`)).json();
+        const vacataires = await (await fetch(`/badgeuse/vacataire/`)).json();
         const cours = await (await fetch(`/badgeuse/cours/`)).json();
         vacataire.motDePasse=null;
         this.setState({item: vacataire});
+        this.setState({vacataires: vacataires});
         this.setState({lesCours: cours});
         const sonCours = this.checkCours(this.state.item.login)
         if(typeof sonCours !== "undefined"){
@@ -104,10 +107,24 @@ class VacataireModifier extends Component {
         }
     }
 
+    checkMail(val) {
+        const existe = this.state.vacataires.map(vacataire => {
+            if(vacataire.id != this.state.item.id)
+                return vacataire.mail === val
+        });
+        return existe.some(item => true === item);
+    }
+
     validate(){
         let input = this.state.item;
         let errors = {};
         let isValid = true;
+
+
+        if (this.checkMail(input["mail"])) {
+            isValid = false;
+            errors["mail"] = "Adresse mail déjà utilisée";
+        }
 
         if (typeof input["mail"] !== "undefined") {
 
