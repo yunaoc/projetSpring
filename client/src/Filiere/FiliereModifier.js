@@ -138,8 +138,8 @@ class FiliereModifier extends Component {
                         </FormGroup>
                     </div>
                     <FormGroup>
-                        <Button color="primary" type="submit">Save</Button>{' '}
-                        <Button color="secondary" tag={Link} to="/filiere">Cancel</Button>
+                        <Button color="primary" type="submit">Confirmer</Button>{' '}
+                        <Button color="secondary" tag={Link} to="/filiere">Annuler</Button>
                     </FormGroup>
                 </Form>
             </Container>
