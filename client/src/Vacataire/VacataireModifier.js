@@ -219,9 +219,11 @@ class VacataireModifier extends Component {
                             />
                         </FormGroup>
                     </div>
-                    <FormGroup>
-                        <Label for="login">Login : {item.login}</Label>
-                    </FormGroup>
+                    <div className="row">
+                        <FormGroup  className="col-md-10 mb-6">
+                            <Label for="login">Login : {item.login}</Label>
+                        </FormGroup>
+                    </div>
                     <div className="row">
                         <FormGroup className="col-md-5 mb-3">
                             <Label for="motDePasse">Nouveau mot de passe</Label><br/>
