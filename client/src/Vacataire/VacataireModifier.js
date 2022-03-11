@@ -109,11 +109,15 @@ class VacataireModifier extends Component {
     }
 
     checkMail(val) {
-        const existe = this.state.vacataires.map(vacataire => {
+        const existe1 = this.state.vacataires.map(vacataire => {
             if(vacataire.id !== this.state.item.id)
                 return vacataire.mail === val
         });
-        return existe.some(item => true === item);
+        const existe2 = this.state.gestionnaires.map(gestionnaire => {
+            if(gestionnaire.id !== this.state.item.id)
+                return gestionnaire.mail === val
+        });
+        return existe1.some(item => true === item) || existe2.some(item => true === item);
     }
 
     validate(){
