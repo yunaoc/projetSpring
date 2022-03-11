@@ -15,6 +15,7 @@ class ComposanteModifier extends Component {
         super(props);
         this.state = {
             item: this.emptyItem,
+            composantes: [],
             errors: {}
         };
         this.handleChange = this.handleChange.bind(this);
@@ -23,7 +24,8 @@ class ComposanteModifier extends Component {
 
     async componentDidMount() {
         const composante = await (await fetch(`/badgeuse/composante/${this.props.match.params.id}`)).json();
-        this.setState({item: composante});
+        const data = await (await fetch(`/badgeuse/composante`)).json();
+        this.setState({composantes: data, item: composante});
     }
 
     handleChange(event) {
@@ -51,6 +53,13 @@ class ComposanteModifier extends Component {
         }
     }
 
+    checkNom(val) {
+        const existe = this.state.composantes.map(composante => {
+            return composante.nomComposante === val
+        });
+        return existe.some(item => true === item);
+    }
+
     validate(){
         let input = this.state.item;
         let errors = {};
@@ -59,6 +68,11 @@ class ComposanteModifier extends Component {
         if (!input["nomComposante"]) {
             isValid = false;
             errors["nomComposante"] = "Veuillez saisir un nom";
+        }
+
+        if (this.checkNom(input["nomComposante"])) {
+            isValid = false;
+            errors["nomComposante"] = "Nom composante déjà utilisé";
         }
 
         this.setState({

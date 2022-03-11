@@ -15,10 +15,16 @@ class ComposanteCreer extends Component {
         super(props);
         this.state = {
             item: this.emptyItem,
+            composantes: [],
             errors: {}
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    async componentDidMount() {
+        const data = await (await fetch(`/badgeuse/composante`)).json();
+        this.setState({ composantes: data });
     }
 
     handleChange(event) {
@@ -35,7 +41,6 @@ class ComposanteCreer extends Component {
         event.preventDefault();
 
         if(this.validate()) {
-            console.log(this.state);
             const {item} = this.state;
             await fetch('/badgeuse/composante', {
                 method: 'POST',
@@ -49,6 +54,13 @@ class ComposanteCreer extends Component {
         }
     }
 
+    checkNom(val) {
+        const existe = this.state.composantes.map(composante => {
+            return composante.nomComposante === val
+        });
+        return existe.some(item => true === item);
+    }
+
     validate(){
         let input = this.state.item;
         let errors = {};
@@ -57,6 +69,11 @@ class ComposanteCreer extends Component {
         if (!input["nomComposante"]) {
             isValid = false;
             errors["nomComposante"] = "Veuillez saisir un nom";
+        }
+
+        if (this.checkNom(input["nomComposante"])) {
+            isValid = false;
+            errors["nomComposante"] = "Nom composante déjà utilisé";
         }
 
         this.setState({
@@ -75,7 +92,7 @@ class ComposanteCreer extends Component {
                 <Form onSubmit={this.handleSubmit}>
                     <FormGroup>
                         <Label for="nomComposante">Nom</Label><br/>
-                        <span ><i>{err.nomComposante}</i></span>
+                        <span >{err.nomComposante}</span>
                         <Input type="text" name="nomComposante" id="nomComposante" onChange={this.handleChange}/>
                     </FormGroup>
                     <FormGroup>
