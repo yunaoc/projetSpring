@@ -63,7 +63,7 @@ class FiliereCreer extends Component {
                 },
                 body: JSON.stringify(item),
             });
-            this.props.history.push('/filiereListe');
+            this.props.history.push('/filiere');
         }
     }
 
@@ -135,7 +135,7 @@ class FiliereCreer extends Component {
                     </div>
                     <FormGroup>
                         <Button color="primary" type="submit">Save</Button>{' '}
-                        <Button color="secondary" tag={Link} to="/filiereListe">Cancel</Button>
+                        <Button color="secondary" tag={Link} to="/filiere">Cancel</Button>
                     </FormGroup>
                 </Form>
             </Container>

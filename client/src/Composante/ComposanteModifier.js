@@ -47,7 +47,7 @@ class ComposanteModifier extends Component {
                 },
                 body: JSON.stringify(item),
             });
-            this.props.history.push('/composanteListe');
+            this.props.history.push('/composante');
         }
     }
 
@@ -84,7 +84,7 @@ class ComposanteModifier extends Component {
                     </FormGroup>
                     <FormGroup>
                         <Button color="primary" type="submit">Valider</Button>{' '}
-                        <Button color="secondary" tag={Link} to="/composanteListe">Annuler</Button>
+                        <Button color="secondary" tag={Link} to="/composante">Annuler</Button>
                     </FormGroup>
                 </Form>
             </Container>

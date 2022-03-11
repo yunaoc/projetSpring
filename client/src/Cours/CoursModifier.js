@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import {Button, Container, Form, FormGroup, Input, Label, Table} from 'reactstrap';
 import Menu from '../Menu';
 
@@ -54,7 +54,7 @@ class CoursModifier extends Component {
                 },
                 body: JSON.stringify(item),
             });
-            this.props.history.push('/coursListe');
+            this.props.history.push('/cours');
         }
     }
 

@@ -58,7 +58,7 @@ class ComposanteListe extends Component {
                 <Menu/>
                 <Container fluid>
                     <div className="float-right">
-                        <Button color="success" tag={Link} to="/composanteCreer">Ajouter Composante</Button>
+                        <Button color="success" tag={Link} to="/composante/creer">Ajouter composante</Button>
                     </div>
                     <h3>Liste des Composantes</h3>
                     <Table className="mt-4">

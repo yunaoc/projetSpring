@@ -55,7 +55,7 @@ class VacataireCreer extends Component {
                 },
                 body: JSON.stringify(item),
             });
-            this.props.history.push('/vacataireListe');
+            this.props.history.push('/vacataire');
         }
     }
 
@@ -183,7 +183,7 @@ class VacataireCreer extends Component {
                     </div>
                     <FormGroup>
                         <Button color="primary" type="submit">Confirmer</Button>{' '}
-                        <Button color="secondary" tag={Link} to="/vacataireListe">Annuler</Button>
+                        <Button color="secondary" tag={Link} to="/vacataire">Annuler</Button>
                     </FormGroup>
                 </Form>
             </Container>

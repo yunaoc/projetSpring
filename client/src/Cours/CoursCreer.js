@@ -51,7 +51,7 @@ class CoursCreer extends Component {
             })
             this.ajoutFilieres()
             setTimeout(function() {
-                window.location.replace('/coursListe');
+                window.location.replace('/cours');
             }, 1000);
         }
     }
@@ -138,7 +138,7 @@ class CoursCreer extends Component {
                     </div>
                     <FormGroup>
                         <Button color="primary" type="submit">Confirmer</Button>{' '}
-                        <Button color="secondary" tag={Link} to="/coursListe">Annuler</Button>
+                        <Button color="secondary" tag={Link} to="/cours">Annuler</Button>
                     </FormGroup>
                 </Form>
             </Container>

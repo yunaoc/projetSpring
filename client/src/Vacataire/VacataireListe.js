@@ -40,7 +40,7 @@ class VacataireListe extends Component {
                 <td style={{whiteSpace: 'nowrap'}}>{vacataire.mail}</td>
                 <td>
                     <ButtonGroup>
-                        <Button size="sm" color="primary" tag={Link} to={"/vacataireModifier/" + vacataire.id}>Modifier</Button>
+                        <Button size="sm" color="primary" tag={Link} to={"/vacataire/modifier/" + vacataire.id}>Modifier</Button>
                         <Button size="sm" color="danger" onClick={() => this.remove(vacataire.id)}>Supprimer</Button>
                     </ButtonGroup>
                 </td>
@@ -52,7 +52,7 @@ class VacataireListe extends Component {
                 <Menu/>
                 <Container fluid>
                     <div className="float-right">
-                        <Button color="success" tag={Link} to="/vacataireCreer">Ajouter vacataire</Button>
+                        <Button color="success" tag={Link} to="/vacataire/creer">Ajouter vacataire</Button>
                     </div>
                     <h3>Liste des vacataires</h3>
                     <Table className="mt-4">

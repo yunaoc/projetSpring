@@ -24,20 +24,20 @@ class App extends Component {
         <Router>
           <Switch>
             <Route path='/' exact={true} component={Accueil}/>
-            <Route path='/vacataireListe' exact={true} component={VacataireListe}/>
-            <Route path='/vacataireCreer' exact={true} component={VacataireCreer}/>
-            <Route path='/vacataireModifier/:id' exact={true} component={VacataireModifier}/>
-            <Route path='/coursListe' exact={true} component={CoursListe}/>
-            <Route path='/coursCreer' exact={true} component={CoursCreer}/>
-            <Route path='/coursModifier/:id' exact={true} component={CoursModifier}/>
+            <Route path='/vacataire' exact={true} component={VacataireListe}/>
+            <Route path='/vacataire/creer' exact={true} component={VacataireCreer}/>
+            <Route path='/vacataire/modifier/:id' exact={true} component={VacataireModifier}/>
+            <Route path='/cours' exact={true} component={CoursListe}/>
+            <Route path='/cours/creer' exact={true} component={CoursCreer}/>
+            <Route path='/cours/modifier/:id' exact={true} component={CoursModifier}/>
             <Route path='/gestionnaire' exact={true} component={GestionnairesList}/>
             <Route path='/gestionnaire/modifier/:id' component={GestionnaireModifier}/>
             <Route path='/gestionnaire/creer' exact={true} component={GestionnaireAjouter}/>
-            <Route path='/composanteListe' exact={true} component={ComposanteListe}/>
-            <Route path='/composanteCreer' component={ComposanteCreer}/>
+            <Route path='/composante' exact={true} component={ComposanteListe}/>
+            <Route path='/composante/creer' component={ComposanteCreer}/>
             <Route path='/composante/modifier/:id' exact={true} component={ComposanteModifier}/>
-            <Route path='/filiereListe' exact={true} component={FiliereListe}/>
-            <Route path='/filiereCreer' component={FiliereCreer}/>
+            <Route path='/filiere' exact={true} component={FiliereListe}/>
+            <Route path='/filiere/creer' component={FiliereCreer}/>
             <Route path='/filiere/modifier/:id' exact={true} component={FiliereModifier}/>
           </Switch>
         </Router>
