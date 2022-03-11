@@ -38,7 +38,7 @@ class GestionnaireList extends Component {
         const {gestionnaires, isLoading} = this.state;
 
         if (isLoading) {
-            return <p>Loading...</p>;
+            return <p>Chargement...</p>;
         }
 
         const gestionnaireList = gestionnaires.map(gestionnaire => {
@@ -63,12 +63,12 @@ class GestionnaireList extends Component {
                     <div className="float-right">
                         <Button color="success" tag={Link} to="/gestionnaire/creer">Ajouter Gestionnaire</Button>
                     </div>
-                    <h3>Les gestionnaires :</h3>
+                    <h3>Liste des gestionnaires</h3>
                     <Table className="mt-4">
                         <thead>
                         <tr>
                             <th width="25%">Nom</th>
-                            <th width="25%">Prenom</th>
+                            <th width="25%">Prénom</th>
                             <th width="25%">Email</th>
                             <th width="25%">Action</th>
                         </tr>
