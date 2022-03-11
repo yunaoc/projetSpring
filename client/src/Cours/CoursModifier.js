@@ -74,7 +74,7 @@ class CoursModifier extends Component {
 
     async addFiliere(id) {
         const {item} = this.state;
-        await fetch(`../badgeuse/cours/addFiliere/?idCours=${item.id}&idFiliere=${id}`, {
+        await fetch(`/badgeuse/cours/addFiliere/?idCours=${item.id}&idFiliere=${id}`, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',
@@ -86,7 +86,7 @@ class CoursModifier extends Component {
     }
 
     async removeFiliere(id) {
-        await fetch(`../badgeuse/cours/removeFiliere/?idCours=${this.state.item.id}&idFiliere=${id}`, {
+        await fetch(`/badgeuse/cours/removeFiliere/?idCours=${this.state.item.id}&idFiliere=${id}`, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',
