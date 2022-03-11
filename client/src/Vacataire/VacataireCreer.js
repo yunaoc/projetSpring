@@ -19,16 +19,17 @@ class VacataireCreer extends Component {
         this.state = {
             item: this.emptyItem,
             vacataires : [],
+            gestionnaires : [],
             errors: {}
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    componentDidMount() {
-        fetch('badgeuse/vacataire/')
-            .then(response => response.json())
-            .then(data => this.setState({vacataires: data}));
+    async componentDidMount() {
+        const vacataires = await (await fetch(`/badgeuse/vacataire/`)).json();
+        const gestionnaires = await (await fetch(`/badgeuse/gestionnaire/`)).json();
+        this.setState({vacataires: vacataires, gestionnaires : gestionnaires});
     }
 
     handleChange(event) {
@@ -43,7 +44,6 @@ class VacataireCreer extends Component {
 
     async handleSubmit(event) {
         event.preventDefault();
-
         if(this.validate()) {
             this.state.item["motDePasse"] = bcrypt.hashSync(this.state.item["motDePasse"], '$2a$10$81C0NmOGFacMZsWp20poXO');
             const {item} = this.state;
@@ -60,20 +60,27 @@ class VacataireCreer extends Component {
     }
 
     checkMail(val) {
-        const existe = this.state.vacataires.map(vacataire => {
+        const existe1 = this.state.vacataires.map(vacataire => {
             return vacataire.mail === val
         });
-        return existe.some(item => true === item);
+        const existe2 = this.state.gestionnaires.map(gestionnaire => {
+            return gestionnaire.mail === val
+        });
+        return existe1.some(item => true === item) || existe2.some(item => true === item);
     }
 
     checkLogin(val) {
-        const existe = this.state.vacataires.map(vacataire => {
+        const existe1 = this.state.vacataires.map(vacataire => {
             return vacataire.login === val
         });
-        return existe.some(item => true === item);
+        const existe2 = this.state.gestionnaires.map(gestionnaire => {
+            return gestionnaire.login === val
+        });
+        return existe1.some(item => true === item) || existe2.some(item => true === item);
     }
 
     validate(){
+
         let input = this.state.item;
         let errors = {};
         let isValid = true;
@@ -159,16 +166,20 @@ class VacataireCreer extends Component {
                             <Input type="text" name="prenom" id="prenom" onChange={this.handleChange} autoComplete="given-name"/>
                         </FormGroup>
                     </div>
-                    <FormGroup>
-                        <Label for="mail">Email</Label><br/>
-                        <span >{err.mail}</span>
-                        <Input type="text" name="mail" id="mail" onChange={this.handleChange} autoComplete="email"/>
-                    </FormGroup>
-                    <FormGroup>
-                        <Label for="login">Login</Label><br/>
-                        <span >{err.login}</span>
-                        <Input type="text" name="login" id="login" onChange={this.handleChange}/>
-                    </FormGroup>
+                    <div className="row">
+                        <FormGroup className="col-md-10 mb-6">
+                            <Label for="mail">Email</Label><br/>
+                            <span >{err.mail}</span>
+                            <Input type="text" name="mail" id="mail" onChange={this.handleChange} autoComplete="email"/>
+                        </FormGroup>
+                    </div>
+                    <div className="row">
+                        <FormGroup className="col-md-10 mb-6">
+                            <Label for="login">Login</Label><br/>
+                            <span >{err.login}</span>
+                            <Input type="text" name="login" id="login" onChange={this.handleChange}/>
+                        </FormGroup>
+                    </div>
                     <div className="row">
                         <FormGroup className="col-md-5 mb-3">
                             <Label for="motDePasse">Mot de passe</Label><br/>
@@ -182,7 +193,7 @@ class VacataireCreer extends Component {
                         </FormGroup>
                     </div>
                     <FormGroup>
-                        <Button color="primary" type="submit">Confirmer</Button>{' '}
+                        <Button color="primary" type="submit">Enregistrer</Button>{' '}
                         <Button color="secondary" tag={Link} to="/vacataire">Annuler</Button>
                     </FormGroup>
                 </Form>

@@ -24,7 +24,8 @@ class VacataireModifier extends Component {
             optionsCours : [],
             coursOriginal : { id: 0, intitule: "Pas de cours" },
             errors: {},
-            vacataires : []
+            vacataires : [],
+            gestionnaires : []
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleChangeSelection = this.handleChangeSelection.bind(this);
@@ -34,10 +35,12 @@ class VacataireModifier extends Component {
     async componentDidMount() {
         const vacataire = await (await fetch(`/badgeuse/vacataire/${this.props.match.params.id}`)).json();
         const vacataires = await (await fetch(`/badgeuse/vacataire/`)).json();
+        const gestionnaires = await (await fetch(`/badgeuse/gestionnaire/`)).json();
         const cours = await (await fetch(`/badgeuse/cours/`)).json();
         vacataire.motDePasse=null;
         this.setState({item: vacataire});
         this.setState({vacataires: vacataires});
+        this.setState({gestionnaires: gestionnaires});
         this.setState({lesCours: cours});
         const sonCours = this.checkCours(this.state.item.login)
         if(typeof sonCours !== "undefined"){
