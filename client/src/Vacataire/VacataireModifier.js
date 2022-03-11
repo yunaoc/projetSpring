@@ -161,7 +161,7 @@ class VacataireModifier extends Component {
     }
 
     async addCours(id) {
-        await fetch(`../badgeuse/cours/addVacataire/?idCours=${id}&idVacataire=${this.state.item.id}`, {
+        await fetch(`/badgeuse/cours/addVacataire/?idCours=${id}&idVacataire=${this.state.item.id}`, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',
