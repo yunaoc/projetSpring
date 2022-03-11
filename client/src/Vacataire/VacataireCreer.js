@@ -25,10 +25,9 @@ class VacataireCreer extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    componentDidMount() {
-        fetch('badgeuse/vacataire/')
-            .then(response => response.json())
-            .then(data => this.setState({vacataires: data}));
+    async componentDidMount() {
+        const vacataires = await (await fetch(`/badgeuse/vacataire/`)).json();
+        this.setState({vacataires: vacataires});
     }
 
     handleChange(event) {
@@ -43,7 +42,6 @@ class VacataireCreer extends Component {
 
     async handleSubmit(event) {
         event.preventDefault();
-
         if(this.validate()) {
             this.state.item["motDePasse"] = bcrypt.hashSync(this.state.item["motDePasse"], '$2a$10$81C0NmOGFacMZsWp20poXO');
             const {item} = this.state;
@@ -74,6 +72,7 @@ class VacataireCreer extends Component {
     }
 
     validate(){
+
         let input = this.state.item;
         let errors = {};
         let isValid = true;
