@@ -130,7 +130,7 @@ class CoursModifier extends Component {
                         <Input type="text" name="intitule" id="intitule" value={item.intitule} onChange={this.handleChange}/>
                     </FormGroup>
                     <FormGroup>
-                        <Button color="primary" type="submit">Enregistrer</Button>{' '}
+                        <Button color="primary" type="submit">Confirmer</Button>{' '}
                     </FormGroup>
                 </Form>
                 <div>
