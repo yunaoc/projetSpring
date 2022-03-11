@@ -142,7 +142,7 @@ class CoursCreer extends Component {
                         </Table>
                     </div>
                     <FormGroup>
-                        <Button color="primary" type="submit">Confirmer</Button>{' '}
+                        <Button color="primary" type="submit">Enregistrer</Button>{' '}
                         <Button color="secondary" tag={Link} to="/cours">Annuler</Button>
                     </FormGroup>
                 </Form>
