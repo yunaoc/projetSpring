@@ -76,12 +76,24 @@ class GestionnaireModifier extends Component {
         let errors = {};
         let isValid = true;
 
+
+        if (this.checkMail(input["mail"])) {
+            isValid = false;
+            errors["mail"] = "Adresse mail déjà utilisée";
+        }
+
         if (typeof input["mail"] !== "undefined") {
+
             var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
             if (!pattern.test(input["mail"])) {
                 isValid = false;
                 errors["mail"] = "Saisir une adresse mail valide";
             }
+        }
+
+        if (!input["motDePasse"] && input["motDePasse2"] ) {
+            isValid = false;
+            errors["motDePasse"] = "Saisir un mot de passe";
         }
 
         if (input["motDePasse"]){
@@ -93,17 +105,11 @@ class GestionnaireModifier extends Component {
 
             if (input["motDePasse"] !== input["motDePasse2"]) {
                 isValid = false;
-                errors["motDePasse"] = "Les mots de passe sont diffÃ©rents";
-            }else{
-                this.state.item["motDePasse"] = bcrypt.hashSync(this.state.item["motDePasse"], '$2a$10$81C0NmOGFacMZsWp20poXO');
-            }
-
+                errors["motDePasse"] = "Les mots de passe sont différents";
+            } else
+                this.state.item["motDePasse"] = bcrypt.hashSync(input["motDePasse"], '$2a$10$81C0NmOGFacMZsWp20poXO');
         }
 
-        if (this.checkMail(input["mail"])) {
-            isValid = false;
-            errors["mail"] = "Adresse mail déjà utilisée";
-        }
 
         this.setState({
             errors: errors

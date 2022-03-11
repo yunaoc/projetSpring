@@ -47,27 +47,19 @@ public class GestionnaireServiceImpl implements GestionnaireService {
     @Override
     public GestionnaireDto updateGestionnaire(GestionnaireDto gestionnaireDto, Long gestionnaireId) {
         Gestionnaire gestionnaire = gestionnaireRepository.findById(gestionnaireId).orElseThrow(() -> new EntityNotFoundException("Gestionnaire not found"));
-        GestionnaireDto gestioDto = gestionnaireEntityToDto(gestionnaire);
-        if(gestionnaireDto.getNomUsuel() != null ){
-            if (gestionnaireDto.getNomUsuel().equals(gestioDto.getNomUsuel()) || gestionnaireDto.getNomUsuel().equals("")){
-                gestionnaire.setNomUsuel(gestionnaireDto.getNomUsuel());
-            }
-        }
-        if(gestionnaireDto.getPrenom() != null ){
-            if (gestionnaireDto.getPrenom().equals(gestioDto.getPrenom()) || gestionnaireDto.getPrenom().equals("")){
-                gestionnaire.setPrenom(gestionnaireDto.getPrenom());
-            }
-        }
-        if(gestionnaireDto.getMotDePasse() != null ){
-            if (gestionnaireDto.getMotDePasse().equals(gestioDto.getMotDePasse()) || gestionnaireDto.getMotDePasse().equals("")){
-                gestionnaire.setMotDePasse(gestionnaireDto.getMotDePasse());
-            }
-        }
-        if(gestionnaireDto.getMail() != null ){
-            if (gestionnaireDto.getMail().equals(gestioDto.getMail()) || gestionnaireDto.getMail().equals("")){
-                gestionnaire.setMail(gestionnaireDto.getMail());
-            }
-        }
+
+        if(gestionnaireDto.getNomUsuel() != null )
+            gestionnaire.setNomUsuel(gestionnaireDto.getNomUsuel());
+
+        if(gestionnaireDto.getPrenom() != null )
+            gestionnaire.setPrenom(gestionnaireDto.getPrenom());
+
+        if(gestionnaireDto.getMotDePasse() != null )
+            gestionnaire.setMotDePasse(gestionnaireDto.getMotDePasse());
+
+        if(gestionnaireDto.getMail() != null )
+            gestionnaire.setMail(gestionnaireDto.getMail());
+
         gestionnaire = gestionnaireRepository.save(gestionnaire);
         return gestionnaireEntityToDto(gestionnaire);
     }
