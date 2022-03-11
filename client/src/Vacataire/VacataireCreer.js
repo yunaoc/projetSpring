@@ -158,16 +158,20 @@ class VacataireCreer extends Component {
                             <Input type="text" name="prenom" id="prenom" onChange={this.handleChange} autoComplete="given-name"/>
                         </FormGroup>
                     </div>
-                    <FormGroup>
-                        <Label for="mail">Email</Label><br/>
-                        <span >{err.mail}</span>
-                        <Input type="text" name="mail" id="mail" onChange={this.handleChange} autoComplete="email"/>
-                    </FormGroup>
-                    <FormGroup>
-                        <Label for="login">Login</Label><br/>
-                        <span >{err.login}</span>
-                        <Input type="text" name="login" id="login" onChange={this.handleChange}/>
-                    </FormGroup>
+                    <div className="row">
+                        <FormGroup className="col-md-10 mb-6">
+                            <Label for="mail">Email</Label><br/>
+                            <span >{err.mail}</span>
+                            <Input type="text" name="mail" id="mail" onChange={this.handleChange} autoComplete="email"/>
+                        </FormGroup>
+                    </div>
+                    <div className="row">
+                        <FormGroup className="col-md-10 mb-6">
+                            <Label for="login">Login</Label><br/>
+                            <span >{err.login}</span>
+                            <Input type="text" name="login" id="login" onChange={this.handleChange}/>
+                        </FormGroup>
+                    </div>
                     <div className="row">
                         <FormGroup className="col-md-5 mb-3">
                             <Label for="motDePasse">Mot de passe</Label><br/>
@@ -181,7 +185,7 @@ class VacataireCreer extends Component {
                         </FormGroup>
                     </div>
                     <FormGroup>
-                        <Button color="primary" type="submit">Confirmer</Button>{' '}
+                        <Button color="primary" type="submit">Enregistrer</Button>{' '}
                         <Button color="secondary" tag={Link} to="/vacataire">Annuler</Button>
                     </FormGroup>
                 </Form>
