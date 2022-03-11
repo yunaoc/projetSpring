@@ -17,6 +17,7 @@ class FiliereCreer extends Component {
         super(props);
         this.state = {
             item: this.emptyItem,
+            filieres: [],
             selectOptions: [],
             errors: {}
         };
@@ -26,6 +27,8 @@ class FiliereCreer extends Component {
     }
 
     async componentDidMount() {
+        const data = await (await fetch(`/badgeuse/filiere`)).json();
+        this.setState({ filieres: data });
         await this.getOptions();
     }
 
@@ -67,6 +70,20 @@ class FiliereCreer extends Component {
         }
     }
 
+    checkNom(val) {
+        const existe = this.state.filieres.map(filiere => {
+            return filiere.nomFiliere === val
+        });
+        return existe.some(item => true === item);
+    }
+
+    checkCode(val) {
+        const existe = this.state.filieres.map(filiere => {
+            return filiere.codeFiliere === val
+        });
+        return existe.some(item => true === item);
+    }
+
     validate(){
         let input = this.state.item;
         let errors = {};
@@ -85,6 +102,16 @@ class FiliereCreer extends Component {
         if (!input["maComposante"]) {
             isValid = false;
             errors["maComposante"] = "Veuillez saisir une composante";
+        }
+
+        if (this.checkNom(input["nomFiliere"])) {
+            isValid = false;
+            errors["nomFiliere"] = "Nom filière déjà utilisé";
+        }
+
+        if (this.checkCode(input["codeFiliere"])) {
+            isValid = false;
+            errors["codeFiliere"] = "Code filière déjà utilisé";
         }
 
         this.setState({
@@ -117,19 +144,19 @@ class FiliereCreer extends Component {
                     <div className="row">
                         <FormGroup className="col-md-5 mb-3">
                             <Label for="nomFiliere">Nom</Label><br/>
-                            <span ><i>{err.nomFiliere}</i></span>
+                            <span >{err.nomFiliere}</span>
                             <Input type="text" name="nomFiliere" id="nomFiliere" onChange={this.handleChange}/>
                         </FormGroup>
                         <FormGroup className="col-md-5 mb-3">
                             <Label for="codeFiliere">Code</Label><br/>
-                            <span ><i>{err.codeFiliere}</i></span>
+                            <span >{err.codeFiliere}</span>
                             <Input type="text" name="codeFiliere" id="codeFiliere" onChange={this.handleChange}/>
                         </FormGroup>
                     </div>
                     <div className="row">
                     <FormGroup className="col-md-10 mb-6">
                         <Label for="maComposante">Composante</Label><br/>
-                        <span ><i>{err.maComposante}</i></span>
+                        <span >{err.maComposante}</span>
                         <Select options={this.state.selectOptions} onChange={this.handleComposanteChange}/>
                     </FormGroup>
                     </div>
