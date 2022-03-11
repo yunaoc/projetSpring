@@ -10,7 +10,7 @@ import {
 
 } from 'reactstrap';
 import Menu from '../Menu';
-import bcrypt from 'bcryptjs'
+import bcrypt from 'bcryptjs';
 
 class GestionnaireCreer extends Component {
 
@@ -160,7 +160,7 @@ class GestionnaireCreer extends Component {
             <Menu/>
             <Container>
                 <p/>
-                <h2>Créer Gestionnaire</h2>
+                <h2>Créer gestionnaire</h2>
                 <p/>
                 <Form onSubmit={this.handleSubmit}>
                     <div className="row">
@@ -175,16 +175,20 @@ class GestionnaireCreer extends Component {
                             <Input type="text" name="prenom" id="prenom" onChange={this.handleChange} autoComplete="given-name"/>
                         </FormGroup>
                     </div>
-                    <FormGroup>
-                        <Label for="mail">Email</Label><br/>
-                        <span >{err.mail}</span>
-                        <Input type="text" name="mail" id="mail" onChange={this.handleChange} autoComplete="email"/>
-                    </FormGroup>
-                    <FormGroup>
-                        <Label for="login">Login</Label><br/>
-                        <span >{err.login}</span>
-                        <Input type="text" name="login" id="login" onChange={this.handleChange}/>
-                    </FormGroup>
+                    <div className="row">
+                        <FormGroup className="col-md-10 mb-6">
+                            <Label for="mail">Email</Label><br/>
+                            <span >{err.mail}</span>
+                            <Input type="text" name="mail" id="mail" onChange={this.handleChange} autoComplete="email"/>
+                        </FormGroup>
+                    </div>
+                    <div className="row">
+                        <FormGroup className="col-md-10 mb-6">
+                            <Label for="login">Login</Label><br/>
+                            <span >{err.login}</span>
+                            <Input type="text" name="login" id="login" onChange={this.handleChange}/>
+                        </FormGroup>
+                    </div>
                     <div className="row">
                         <FormGroup className="col-md-5 mb-3">
                             <Label for="motDePasse">Mot de passe</Label><br/>
@@ -197,20 +201,22 @@ class GestionnaireCreer extends Component {
                             <Input type="password" name="motDePasse2" id="motDePasse2" onChange={this.handleChange}/>
                         </FormGroup>
                     </div>
-                    <FormGroup>
-                        <Label for="maComposante">Composante :</Label><br/>
-                        <span >{err.maComposante}</span>
-                        <p/>
-                        <select name="maComposante" onChange={this.handleChange}>
-                            <option key="0" value="0">Selectionner une composante</option>
-                            {composantes.map(composante => (
-                                <option key={composante.idComposante} value={composante.idComposante}>
-                                    {composante.nomComposante}
-                                </option>
+                    <div className="row">
+                        <FormGroup className="col-md-10 mb-6">
+                            <Label for="maComposante">Composante :</Label><br/>
+                            <span >{err.maComposante}</span>
+                            <p/>
+                            <select name="maComposante" onChange={this.handleChange}>
+                                <option key="0" value="0">Selectionner une composante</option>
+                                {composantes.map(composante => (
+                                    <option key={composante.idComposante} value={composante.idComposante}>
+                                        {composante.nomComposante}
+                                    </option>
 
-                            ))}
-                        </select>
-                    </FormGroup>
+                                ))}
+                            </select>
+                        </FormGroup>
+                    </div>
 
                     <FormGroup>
                         <Button color="primary" type="submit">Enregistrer</Button>{' '}
