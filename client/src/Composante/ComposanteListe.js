@@ -43,12 +43,10 @@ class ComposanteListe extends Component {
             return <tr key={composante.idComposante}>
                 <td style={{whiteSpace: 'nowrap'}}>{composante.nomComposante}</td>
                 <td>
-                    <td>
-                        <ButtonGroup>
-                            <Button size="sm" color="primary" tag={Link} to={"/composante/modifier/" + composante.idComposante}>Modifier</Button>
-                            <Button size="sm" color="danger" onClick={() => this.remove(composante.idComposante)}>Supprimer</Button>
-                        </ButtonGroup>
-                    </td>
+                    <ButtonGroup>
+                        <Button size="sm" color="primary" tag={Link} to={"/composante/modifier/" + composante.idComposante}>Modifier</Button>
+                        <Button size="sm" color="danger" onClick={() => this.remove(composante.idComposante)}>Supprimer</Button>
+                    </ButtonGroup>
                 </td>
             </tr>
         });
