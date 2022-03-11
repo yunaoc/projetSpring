@@ -43,7 +43,7 @@ class FiliereListe extends Component {
             return <tr key={filiere.idFiliere}>
                 <td style={{whiteSpace: 'nowrap'}}>{filiere.codeFiliere}</td>
                 <td style={{whiteSpace: 'nowrap'}}>{filiere.nomFiliere}</td>
-                <td style={{whiteSpace: 'nowrap'}}>{filiere.maComposante.idComposante} - {filiere.maComposante.nomComposante}</td>
+                <td style={{whiteSpace: 'nowrap'}}>{filiere.maComposante.nomComposante}</td>
                 <td>
                     <ButtonGroup>
                         <Button size="sm" color="primary" tag={Link} to={"/filiere/modifier/" + filiere.idFiliere}>Modifier</Button>
