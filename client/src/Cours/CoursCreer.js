@@ -64,6 +64,10 @@ class CoursCreer extends Component {
             isValid = false;
             errors["intitule"] = "Saisir un intitulé";
         }
+        if (this.state.aAjouter.length === 0) {
+            isValid = false;
+            errors["filiere"] = "Choisir au moins une filière";
+        }
         this.setState({
             errors: errors
         });
@@ -129,7 +133,8 @@ class CoursCreer extends Component {
                         <Input type="text" name="intitule" id="intitule" onChange={this.handleChange}/>
                     </FormGroup>
                     <div>
-                        <h4>Filières</h4>
+                        <h4>Filières</h4><br/>
+                        <span >{err.filiere}</span>
                         <Table>
                             <tbody>
                             {filieres}
