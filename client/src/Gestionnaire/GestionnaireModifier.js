@@ -121,25 +121,33 @@ class GestionnaireModifier extends Component {
             <Container>
                 <h2>Modifier gestionnaire</h2>
                 <Form onSubmit={this.handleSubmit}>
-                    <FormGroup>
-                        <Label for="login">Login : {item.login}</Label>
-                    </FormGroup>
-                    <FormGroup>
-                        <Label for="nomUsuel">Nom</Label>
-                        <Input type="text" name="nomUsuel" id="nomUsuel" value={item.nomUsuel}
-                               onChange={this.handleChange} autoComplete="nomUsuel"/>
-                    </FormGroup>
-                    <FormGroup>
-                        <Label for="prenom">Prenom</Label>
-                        <Input type="text" name="prenom" id="prenom" value={item.prenom}
-                               onChange={this.handleChange} autoComplete="prenom"/>
-                    </FormGroup>
-                    <FormGroup>
-                        <Label for="mail">Email</Label><br/>
-                        <span >{err.mail}</span>
-                        <Input type="text" name="mail" id="mail" value={item.mail}
-                               onChange={this.handleChange} autoComplete="mail"/>
-                    </FormGroup>
+                    <div className="row">
+                        <FormGroup className="col-md-10 mb-6">
+                            <Label for="login">Login : {item.login}</Label>
+                        </FormGroup>
+                    </div>
+                    <div className="row">
+                        <FormGroup className="col-md-10 mb-6">
+                            <Label for="nomUsuel">Nom</Label>
+                            <Input type="text" name="nomUsuel" id="nomUsuel" value={item.nomUsuel}
+                                   onChange={this.handleChange} autoComplete="nomUsuel"/>
+                        </FormGroup>
+                    </div>
+                    <div className="row">
+                        <FormGroup className="col-md-10 mb-6">
+                            <Label for="prenom">Prenom</Label>
+                            <Input type="text" name="prenom" id="prenom" value={item.prenom}
+                                   onChange={this.handleChange} autoComplete="prenom"/>
+                        </FormGroup>
+                    </div>
+                    <div className="row">
+                        <FormGroup className="col-md-10 mb-6">
+                            <Label for="mail">Email</Label><br/>
+                            <span >{err.mail}</span>
+                            <Input type="text" name="mail" id="mail" value={item.mail}
+                                   onChange={this.handleChange} autoComplete="mail"/>
+                        </FormGroup>
+                    </div>
                     <div className="row">
                         <FormGroup className="col-md-5 mb-3">
                             <Label for="motDePasse">Nouveau mot de passe</Label><br/>
@@ -154,7 +162,7 @@ class GestionnaireModifier extends Component {
                     </div>
 
                     <FormGroup>
-                        <Button color="primary" type="submit">Valider</Button>{' '}
+                        <Button color="primary" type="submit">Confirmer</Button>{' '}
                         <Button color="secondary" tag={Link} to="/gestionnaire">Annuler</Button>
                     </FormGroup>
                 </Form>

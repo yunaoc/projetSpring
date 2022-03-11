@@ -75,15 +75,15 @@ class ComposanteModifier extends Component {
         return <div>
             <Menu/>
             <Container>
-                <h2>Modifier Composante</h2>
+                <h2>Modifier composante</h2>
                 <Form onSubmit={this.handleSubmit}>
-                    <FormGroup className="col-md-5 mb-3">
+                    <FormGroup>
                         <Label for="nomComposante">Nom</Label><br/>
                         <span ><i>{err.nomComposante}</i></span>
                         <Input type="text" name="nomComposante" id="nomComposante" value={item.nomComposante} onChange={this.handleChange}/>
                     </FormGroup>
                     <FormGroup>
-                        <Button color="primary" type="submit">Valider</Button>{' '}
+                        <Button color="primary" type="submit">Confirmer</Button>{' '}
                         <Button color="secondary" tag={Link} to="/composante">Annuler</Button>
                     </FormGroup>
                 </Form>

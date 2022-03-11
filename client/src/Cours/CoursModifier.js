@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import {Button, Container, Form, FormGroup, Input, Label, Table} from 'reactstrap';
 import Menu from '../Menu';
 
@@ -130,7 +130,8 @@ class CoursModifier extends Component {
                         <Input type="text" name="intitule" id="intitule" value={item.intitule} onChange={this.handleChange}/>
                     </FormGroup>
                     <FormGroup>
-                        <Button color="primary" type="submit">Enregistrer</Button>{' '}
+                        <Button color="primary" type="submit">Confirmer</Button>{' '}
+                        <Button color="secondary" tag={Link} to="/cours">Annuler</Button>
                     </FormGroup>
                 </Form>
                 <div>

@@ -164,7 +164,7 @@ class VacataireModifier extends Component {
     }
 
     async addCours(id) {
-        await fetch(`../badgeuse/cours/addVacataire/?idCours=${id}&idVacataire=${this.state.item.id}`, {
+        await fetch(`/badgeuse/cours/addVacataire/?idCours=${id}&idVacataire=${this.state.item.id}`, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',
@@ -222,9 +222,11 @@ class VacataireModifier extends Component {
                             />
                         </FormGroup>
                     </div>
-                    <FormGroup>
-                        <Label for="login">Login : {item.login}</Label>
-                    </FormGroup>
+                    <div className="row">
+                        <FormGroup  className="col-md-10 mb-6">
+                            <Label for="login">Login : {item.login}</Label>
+                        </FormGroup>
+                    </div>
                     <div className="row">
                         <FormGroup className="col-md-5 mb-3">
                             <Label for="motDePasse">Nouveau mot de passe</Label><br/>

@@ -73,16 +73,14 @@ class ComposanteCreer extends Component {
             <Container>
                 <h2>Créer composante</h2>
                 <Form onSubmit={this.handleSubmit}>
-                    <div className="row">
-                        <FormGroup className="col-md-5 mb-3">
-                            <Label for="nomComposante">Nom</Label><br/>
-                            <span ><i>{err.nomComposante}</i></span>
-                            <Input type="text" name="nomComposante" id="nomComposante" onChange={this.handleChange}/>
-                        </FormGroup>
-                    </div>
                     <FormGroup>
-                        <Button color="primary" type="submit">Save</Button>{' '}
-                        <Button color="secondary" tag={Link} to="/composante">Cancel</Button>
+                        <Label for="nomComposante">Nom</Label><br/>
+                        <span ><i>{err.nomComposante}</i></span>
+                        <Input type="text" name="nomComposante" id="nomComposante" onChange={this.handleChange}/>
+                    </FormGroup>
+                    <FormGroup>
+                        <Button color="primary" type="submit">Enregistrer</Button>{' '}
+                        <Button color="secondary" tag={Link} to="/composante">Annuler</Button>
                     </FormGroup>
                 </Form>
             </Container>
