@@ -19,7 +19,8 @@ class GestionnaireModifier extends Component {
         this.state = {
             item: this.emptyItem,
             errors: {},
-            gestionnaires : []
+            gestionnaires : [],
+            vacataires : []
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -29,7 +30,8 @@ class GestionnaireModifier extends Component {
         const gestionnaire = await (await fetch(`/badgeuse/gestionnaire/${this.props.match.params.id}`)).json();
         gestionnaire.motDePasse=null;
         const gestionnaires = await (await fetch(`/badgeuse/gestionnaire/`)).json();
-        this.setState({gestionnaires: gestionnaires , item : gestionnaire});
+        const vacataires = await (await fetch(`/badgeuse/vacataire/`)).json();
+        this.setState({gestionnaires: gestionnaires , vacataires: vacataires ,item : gestionnaire});
     }
 
     handleChange(event) {
@@ -59,11 +61,14 @@ class GestionnaireModifier extends Component {
     }
 
     checkMail(val) {
-        const existe = this.state.gestionnaires.map(gestionnaire => {
+        const existe1 = this.state.gestionnaires.map(gestionnaire => {
             if(gestionnaire.id !== this.state.item.id)
                 return gestionnaire.mail === val
         });
-        return existe.some(item => true === item);
+        const existe2 = this.state.vacataires.map(vacataire => {
+            return vacataire.mail === val
+        });
+        return existe1.some(item => true === item) || existe2.some(item => true === item);
     }
 
     validate(){

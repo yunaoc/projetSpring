@@ -19,6 +19,7 @@ class VacataireCreer extends Component {
         this.state = {
             item: this.emptyItem,
             vacataires : [],
+            gestionnaires : [],
             errors: {}
         };
         this.handleChange = this.handleChange.bind(this);
@@ -27,7 +28,8 @@ class VacataireCreer extends Component {
 
     async componentDidMount() {
         const vacataires = await (await fetch(`/badgeuse/vacataire/`)).json();
-        this.setState({vacataires: vacataires});
+        const gestionnaires = await (await fetch(`/badgeuse/gestionnaire/`)).json();
+        this.setState({vacataires: vacataires, gestionnaires : gestionnaires});
     }
 
     handleChange(event) {
@@ -58,17 +60,23 @@ class VacataireCreer extends Component {
     }
 
     checkMail(val) {
-        const existe = this.state.vacataires.map(vacataire => {
+        const existe1 = this.state.vacataires.map(vacataire => {
             return vacataire.mail === val
         });
-        return existe.some(item => true === item);
+        const existe2 = this.state.gestionnaires.map(gestionnaire => {
+            return gestionnaire.mail === val
+        });
+        return existe1.some(item => true === item) || existe2.some(item => true === item);
     }
 
     checkLogin(val) {
-        const existe = this.state.vacataires.map(vacataire => {
+        const existe1 = this.state.vacataires.map(vacataire => {
             return vacataire.login === val
         });
-        return existe.some(item => true === item);
+        const existe2 = this.state.gestionnaires.map(gestionnaire => {
+            return gestionnaire.login === val
+        });
+        return existe1.some(item => true === item) || existe2.some(item => true === item);
     }
 
     validate(){

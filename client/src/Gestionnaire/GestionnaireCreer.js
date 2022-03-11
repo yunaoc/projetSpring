@@ -30,6 +30,7 @@ class GestionnaireCreer extends Component {
             isLoading: true,
             composantes: [],
             gestionnaires : [],
+            vacataires : [],
             errors: {}
         };
         this.handleChange = this.handleChange.bind(this);
@@ -70,21 +71,28 @@ class GestionnaireCreer extends Component {
     async componentDidMount() {
         const response1 = await (await fetch('/badgeuse/composante/')).json();
         const response2 = await (await fetch(`/badgeuse/gestionnaire/`)).json();
-        this.setState({ gestionnaires: response2, composantes: response1, isLoading: false });
+        const response3 = await (await fetch(`/badgeuse/vacataire/`)).json();
+        this.setState({ gestionnaires: response2, composantes: response1, vacataires : response3, isLoading: false });
     }
 
     checkMail(val) {
-        const existe = this.state.gestionnaires.map(gestionnaire => {
+        const existe1 = this.state.gestionnaires.map(gestionnaire => {
             return gestionnaire.mail === val
         });
-        return existe.some(item => true === item);
+        const existe2 = this.state.vacataires.map(vacataire => {
+            return vacataire.mail === val
+        });
+        return existe1.some(item => true === item) || existe2.some(item => true === item);
     }
 
     checkLogin(val) {
-        const existe = this.state.gestionnaires.map(gestionnaire => {
+        const existe1 = this.state.gestionnaires.map(gestionnaire => {
             return gestionnaire.login === val
         });
-        return existe.some(item => true === item);
+        const existe2 = this.state.vacataires.map(vacataire => {
+            return vacataire.login === val
+        });
+        return existe1.some(item => true === item) || existe2.some(item => true === item);
     }
 
     validate(){
