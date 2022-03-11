@@ -152,7 +152,7 @@ class GestionnaireCreer extends Component {
         const {composantes, isLoading} = this.state;
 
         if (isLoading) {
-            return <p>Loading...</p>;
+            return <p>Chargement...</p>;
         }
 
         const err = this.state.errors;

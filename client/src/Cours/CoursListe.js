@@ -46,7 +46,7 @@ class CoursListe extends Component {
                 <td style={{whiteSpace: 'nowrap'}}>{vacataires}</td>
                 <td>
                     <ButtonGroup>
-                        <Button size="sm" color="primary" tag={Link} to={"/coursModifier/" + cours.id}>Modifier</Button>
+                        <Button size="sm" color="primary" tag={Link} to={"/cours/modifier/" + cours.id}>Modifier</Button>
                         <Button size="sm" color="danger" onClick={() => this.remove(cours.id)}>Supprimer</Button>
                     </ButtonGroup>
                 </td>
@@ -58,7 +58,7 @@ class CoursListe extends Component {
                 <Menu/>
                 <Container fluid>
                     <div className="float-right">
-                        <Button color="success" tag={Link} to="/coursCreer">Ajouter cours</Button>
+                        <Button color="success" tag={Link} to="/cours/creer">Ajouter cours</Button>
                     </div>
                     <h3>Liste des cours</h3>
                     <Table className="mt-4">

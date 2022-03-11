@@ -45,7 +45,7 @@ class ComposanteCreer extends Component {
                 },
                 body: JSON.stringify(item),
             });
-            this.props.history.push('/composanteListe');
+            this.props.history.push('/composante');
         }
     }
 
@@ -82,7 +82,7 @@ class ComposanteCreer extends Component {
                     </div>
                     <FormGroup>
                         <Button color="primary" type="submit">Save</Button>{' '}
-                        <Button color="secondary" tag={Link} to="/composanteListe">Cancel</Button>
+                        <Button color="secondary" tag={Link} to="/composante">Cancel</Button>
                     </FormGroup>
                 </Form>
             </Container>

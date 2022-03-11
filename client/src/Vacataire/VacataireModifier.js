@@ -89,7 +89,7 @@ class VacataireModifier extends Component {
                 },
                 body: JSON.stringify(item),
             });
-            this.props.history.push('/vacataireListe');
+            this.props.history.push('/vacataire');
         }
     }
 
@@ -107,7 +107,7 @@ class VacataireModifier extends Component {
 
     checkMail(val) {
         const existe = this.state.vacataires.map(vacataire => {
-            if(vacataire.id != this.state.item.id)
+            if(vacataire.id !== this.state.item.id)
                 return vacataire.mail === val
         });
         return existe.some(item => true === item);
@@ -237,7 +237,7 @@ class VacataireModifier extends Component {
 
                     <FormGroup>
                         <Button color="primary" type="submit">Confimer</Button>{' '}
-                        <Button color="secondary" tag={Link} to="/vacataireListe">Annuler</Button>
+                        <Button color="secondary" tag={Link} to="/vacataire">Annuler</Button>
                     </FormGroup>
                 </Form>
             </Container>

@@ -58,7 +58,7 @@ class FiliereListe extends Component {
                 <Menu/>
                 <Container fluid>
                     <div className="float-right">
-                        <Button color="success" tag={Link} to="/filiereCreer">Ajouter Filière</Button>
+                        <Button color="success" tag={Link} to="/filiere/creer">Ajouter Filière</Button>
                     </div>
                     <h3>Liste des Filières</h3>
                     <Table className="mt-4">
