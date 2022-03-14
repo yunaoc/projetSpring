@@ -7,7 +7,7 @@ class FiliereListe extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {filieres: [], isLoading: true};
+        this.state = {cours: [], filieres: [], isLoading: true, isRemovable: true};
         this.remove = this.remove.bind(this);
     }
 
@@ -20,23 +20,27 @@ class FiliereListe extends Component {
     }
 
     async remove(id) {
-        await fetch(`/badgeuse/filieree/${id}`, {
+
+        await fetch(`/badgeuse/filiere/${id}`, {
             method: 'DELETE',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
-        }).then(() => {
-            let updatedFilieres = [...this.state.filieres].filter(filiere => filiere.idFiliere !== id);
-            this.setState({filieres: updatedFilieres});
+        }).then((response) => {
+            if (response.ok) {
+                let updatedFilieres = [...this.state.filieres].filter(filiere => filiere.idFiliere !== id);
+                this.setState({filieres: updatedFilieres});
+            } else {
+                this.setState({isRemovable: false});
+            }
         });
     }
 
     render() {
-        const {filieres, isLoading} = this.state;
-
-        if (isLoading) {
-            return <p>Chargement...</p>;
+        const {filieres, isRemovable} = this.state;
+        if (!isRemovable) {
+            alert("Un cours est lié à cette filière, elle ne peut être supprimée !");
         }
 
         const filiereListe = filieres.map(filiere => {
