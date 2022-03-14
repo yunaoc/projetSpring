@@ -7,7 +7,7 @@ class ComposanteListe extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {composantes: [], isLoading: true};
+        this.state = {composantes: [], isLoading: true, isRemovable: true};
         this.remove = this.remove.bind(this);
     }
 
@@ -26,17 +26,22 @@ class ComposanteListe extends Component {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
-        }).then(() => {
-            let updatedComposantes = [...this.state.composantes].filter(composante => composante.idComposante !== id);
-            this.setState({composantes: updatedComposantes});
+        }).then((response) => {
+            if (response.ok) {
+                let updatedComposantes = [...this.state.composantes].filter(composante => composante.idComposante !== id);
+                this.setState({composantes: updatedComposantes});
+            } else {
+                this.setState({isRemovable: false});
+            }
+
         });
     }
 
     render() {
-        const {composantes, isLoading} = this.state;
+        const {composantes, isRemovable} = this.state;
 
-        if (isLoading) {
-            return <p>Chargement...</p>;
+        if (!isRemovable) {
+            alert("Un gestionnaire ou une filière est lié à cette composante, elle ne peut pas être supprimée !");
         }
 
         const composanteListe = composantes.map(composante => {
