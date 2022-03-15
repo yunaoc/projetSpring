@@ -9,7 +9,7 @@ import lombok.Data;
 
 @Entity
 @Data
-abstract class Utilisateur {
+public abstract class Utilisateur {
     @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
